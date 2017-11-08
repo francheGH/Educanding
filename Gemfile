@@ -55,3 +55,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Para ver mejor en la consola
 gem 'hirb'
+
+gem 'devise'
