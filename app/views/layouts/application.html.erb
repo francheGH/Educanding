@@ -4,21 +4,45 @@
     <title>Educanding</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="http://railsgirls.com/assets/bootstrap.css">
+    <link rel="stylesheet" href="http://railsgirls.com/assets/bootstrap-theme.css">    
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   </head>
 
   <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Educanding</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/questions/index">Preguntas</a></li>
+          </ul>
 
-    <p class="navbar-text pull-right">
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
+          <p class="navbar-text pull-right">
+          <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+            <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+            <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
+            <%= link_to "Iniciar sesión", new_user_session_path, :class => 'navbar-link'  %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+
 
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
@@ -27,6 +51,15 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    
   </body>
+
+  <footer>
+    <div class="container">
+      Educanding 2017
+    </div>
+  </footer>
 </html>
