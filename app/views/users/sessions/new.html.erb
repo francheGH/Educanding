@@ -1,26 +1,44 @@
-<h2>Log in</h2>
+<head>
+  <title>Educanding - Iniciar sesión</title>
+  <%= csrf_meta_tags %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <link rel="stylesheet" href="assets/stylesheets/users.css">
+</head>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+<body>
+  <h2>Iniciar sesión</h2>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <!-- Email -->
+    <div class="form-group input-group">
+      <label class="sr-only"> Email </label>
+      <span class="input-group-addon">
+        <i class="fa fa-envelope"></i> <%= f.label 'Email' %>
+      </span>
+      <%= f.email_field :email, required: true, autofocus: true, placeholder: 'Ingrese su email', class: 'form-control' %>
     </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <!-- Contraseña -->
+    <div class="form-group input-group">
+      <label class="sr-only">Contraseña</label>
+      <span class="input-group-addon">
+        <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
+      </span>
+      <%= f.password_field :password, required: true, autocomplete: "off", placeholder: 'Ingrese su contraseña',class: 'form-control' %>
+    </div>
 
-<%= render "users/shared/links" %>
+    <% if devise_mapping.rememberable? -%>
+      <div class="field">
+					<%= f.check_box :remember_me, id: "recordar"%>
+					<%= f.label "Recordarme", :class => "blanco", for: "recordar" %>
+      </div>
+    <% end -%>
+
+		<br>
+		<div class="actions">
+			<%= f.submit "Iniciar sesión", :class => 'btn btn-primary actions'%>
+		</div>
+  <% end %>
+
+  <%= render "users/shared/links" %>
+</body>

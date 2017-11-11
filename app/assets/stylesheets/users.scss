@@ -1,0 +1,13 @@
+.input-group-addon { /* Es el cuadro al lado de input */
+    min-width: 120px;
+    max-width: 120px;
+    text-align: center;
+    border-bottom-left-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+    border:1px solid #ccc !important;
+}
+
+.form-control { /* Es el cuadro de input */
+    min-width: 300px;
+    max-width: 300px;
+}

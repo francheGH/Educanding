@@ -12,8 +12,21 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
-    body { padding-top: 100px; }
-    footer { margin-top: 100px; }
-    table, td, th { vertical-align: middle; border: none; }
-    th { border-bottom: 1px solid #DDD; }
+html { /* No toquen esto pls, que se rompe todo jaja*/
+    position: relative;
+    min-height: 100%;
+    padding-top: 5px;
+    padding-bottom: 70px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-image: linear-gradient(rgba(225,225,225,0.7), #f5fff9);
+}
+    
