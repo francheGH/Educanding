@@ -1,18 +1,12 @@
 Rails.application.routes.draw do
+
+  #Ruta raíz
+  root :to => 'questions#index'
+  
+  #Rutas de devise (usuarios)
   devise_for :users
-  get 'questions/index'
+  
+  #¿Rutas de preguntas?
+  resources :questions
 
-  get 'questions/create'
-
-  get 'questions/update'
-
-  get 'questions/new'
-
-  get 'questions/edit'
-
-  get 'questions/show'
-
-  get 'questions/delete'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
