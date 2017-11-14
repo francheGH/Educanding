@@ -23,6 +23,6 @@ class QuestionsController < ApplicationController
 
   def create
     question = Question.create(params.require(:question))
-    redirect_to question, notice: "Publicaste una pregunta"
+    redirect_to question, notice: "Publicacion realizada"
   end
 end
