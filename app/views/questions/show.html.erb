@@ -1,2 +1,12 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<body>
+
+    <h2> <%= @question.pregunta %> </h1>
+    <p> <%= @question.detalles %></p>
+
+    </br>
+	<div class="actions">
+        <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
+        <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
+	</div>
+
+</body>
