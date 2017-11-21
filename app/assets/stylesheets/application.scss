@@ -14,22 +14,28 @@
  *= require_self
  *= require font-awesome
  */
-html { /* No toquen esto pls, que se rompe todo jaja*/
-    position: relative;
-    min-height: 100%;
-    padding-top: 5px;
-    padding-bottom: 70px;
+
+ body {
+  background-image: url("Background.png");
+  background-size: cover;
+}
+
+ html { /* No toquen esto pls, que se rompe todo jaja*/
+  position: relative;
+  min-height: 100%;
+  padding-top: 5px;
+  padding-bottom: 70px;
 }
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-top: 15px;
-    padding-bottom: 20px;
-    text-align: center;
-    background-image: linear-gradient(rgba(225,225,225,0.7), #f5fff9);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  text-align: center;
+  background-image: linear-gradient(rgba(225,225,225,0.7), #f5fff9);
 }
 .navbar-brand-logo {
-    float: left;
-    padding: 0px 15px;
+  float: left;
+  padding: 0px 15px;
 }
