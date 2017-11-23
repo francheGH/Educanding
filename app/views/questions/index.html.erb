@@ -1,31 +1,40 @@
-<body>
-    <h1> Listado de preguntas </h1>
-
-    <div class="table-responsive">
-        <table class="table">
-            <tr>
-                <th> Pregunta </th>
-                <th> Detalles </th>
-                <th> Usuario </th>
-                <th> Acciones </th>
-            </tr>
-            <% @questions.each do |question| %>
-                <tr>
-                    <td> <%= question.pregunta %> </td>
-                    <td> <%= question.detalles %> </td>
-                    <td> <%= question.user.email %> </td>
-                    <td>
-                        <%= link_to "Mostrar", question_path(question), class: 'btn btn-info btn-sm' %>
-                        <%= link_to "Editar", edit_question_path(question), class: 'btn btn-info btn-sm' %>
-                        <%= link_to "Eliminar", question, method: :delete, class: 'btn btn-danger btn-sm' %>
-                    </td>
-                </tr>
-            <% end %>
-        </table>
+<div class="panel-center">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Listado de preguntas </h2>
     </div>
-    <%if user_signed_in? %>
+  </div>
+
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th> Pregunta </th>
+          <th> Detalles </th>
+          <th> Usuario </th>
+          <th> Acciones </th>
+        </tr>
+        <% @questions.each do |question| %>
+          <tr>
+            <td> <%= question.pregunta %> </td>
+            <td> <%= question.detalles %> </td>
+            <td> <%= question.user.email %> </td>
+            <td>
+              <%= link_to "Mostrar", question_path(question), class: 'btn btn-info btn-sm' %>
+              <%= link_to "Editar", edit_question_path(question), class: 'btn btn-info btn-sm' %>
+              <%= link_to "Eliminar", question, method: :delete, class: 'btn btn-danger btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+  <%if user_signed_in? %>
+    <div class="panel-footer">
         <div class="actions">
-            <%= link_to "Crear pregunta", new_question_path(@question), class: 'btn btn-primary' %>
+          <%= link_to "Crear pregunta", new_question_path(@question), class: 'btn btn-primary' %>
         </div>
-    <%end%>
-</body>
+    </div>
+  <%end%>
+</div>

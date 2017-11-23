@@ -1,12 +1,17 @@
-<body>
+<div class="panel-left col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> <%= @question.pregunta %> </h2>
+      <p> Creada por <%= @question.user.nombre %> <%= @question.user.apellido %></p>
+    </div>
+  </div>
 
-    <h2> <%= @question.pregunta %> </h1>
+  <div class="panel-body">
     <p> <%= @question.detalles %></p>
+  </div>
 
-    </br>
-	<div class="actions">
-        <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
-        <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
-	</div>
-
-</body>
+  <div class="panel-footer">
+    <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
+    <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
+  </div>
+</div>

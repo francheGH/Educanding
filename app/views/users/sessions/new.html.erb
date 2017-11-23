@@ -1,44 +1,45 @@
-<head>
-  <title>Educanding - Iniciar sesión</title>
-  <%= csrf_meta_tags %>
-
-  <link rel="stylesheet" href="assets/stylesheets/users.css">
-</head>
-
-<body>
-  <h2>Iniciar sesión</h2>
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <!-- Email -->
-    <div class="form-group input-group">
-      <label class="sr-only"> Email </label>
-      <span class="input-group-addon">
-        <i class="fa fa-envelope"></i> <%= f.label 'Email' %>
-      </span>
-      <%= f.email_field :email, required: true, autofocus: true, placeholder: 'Ingrese su email', class: 'form-control' %>
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Iniciar sesión </h2>
     </div>
+  </div>
 
-    <!-- Contraseña -->
-    <div class="form-group input-group">
-      <label class="sr-only">Contraseña</label>
-      <span class="input-group-addon">
-        <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
-      </span>
-      <%= f.password_field :password, required: true, autocomplete: "off", placeholder: 'Ingrese su contraseña',class: 'form-control' %>
-    </div>
-
-    <% if devise_mapping.rememberable? -%>
-      <div class="field">
-					<%= f.check_box :remember_me, id: "recordar"%>
-					<%= f.label "Recordarme", :class => "blanco", for: "recordar" %>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <!-- Email -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Email </label>
+        <span class="input-group-addon">
+          <i class="fa fa-envelope"></i> <%= f.label 'Email' %>
+        </span>
+        <%= f.email_field :email, required: true, autofocus: true, placeholder: 'Ingrese su email', class: 'form-control' %>
       </div>
-    <% end -%>
 
-		<br>
-		<div class="actions">
-			<%= f.submit "Iniciar sesión", :class => 'btn btn-primary actions'%>
-		</div>
-  <% end %>
+      <!-- Contraseña -->
+      <div class="form-group input-group">
+        <label class="sr-only">Contraseña</label>
+        <span class="input-group-addon">
+          <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
+        </span>
+        <%= f.password_field :password, required: true, autocomplete: "off", placeholder: 'Ingrese su contraseña',class: 'form-control' %>
+      </div>
 
-  <%= render "users/shared/links" %>
-</body>
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+            <%= f.check_box :remember_me, id: "recordar"%>
+            <%= f.label "Recordarme", :class => "blanco", for: "recordar" %>
+        </div>
+      <% end -%>
+
+      <br>
+      <div class="actions">
+        <%= f.submit "Iniciar sesión", :class => 'btn btn-primary actions'%>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="panel-footer">
+    <%= render "users/shared/links" %>
+  </div>
+</div>

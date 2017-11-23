@@ -11,3 +11,16 @@
     min-width: 300px;
     max-width: 300px;
 }
+
+.panel-center {
+  float: none;
+  margin: 0 auto;
+  border-radius: 6px;
+  background-color: #F5F5F5;
+}
+
+.devise-errors {
+  h2 {
+    font-size: 20px;
+  }
+}

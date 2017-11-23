@@ -1,107 +1,120 @@
-<head>
-  <title>Educanding - Editar perfil</title>
-  <%= csrf_meta_tags %>
-
-  <link rel="stylesheet" href="assets/stylesheets/users.css">
-</head>
-
-<body>
-  <h2> Editar perfil </h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
-
-  <!-- Nombre -->
-    <div class="form-group input-group">
-      <label class="sr-only"> Nombre </label>
-      <span class="input-group-addon">
-        <i class="fa fa-user"></i> <%= f.label 'Nombre' %>
-      </span>
-      <%= f.text_field :nombre, required: true, placeholder: 'Ingrese su nombre', class: 'form-control' %>
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Editar perfil </h2>
     </div>
-
-  <!-- Apellido -->
-    <div class="form-group input-group">
-      <label class="sr-only"> Apellido </label>
-      <span class="input-group-addon">
-        <i class="fa fa-user"></i> <%= f.label 'Apellido' %>
-      </span>
-      <%= f.text_field :apellido, required: true, placeholder: 'Ingrese su apellido', class: 'form-control' %>
-    </div>
-
-  <!-- Fecha de nacimiento
-		<div class="form-group input-group">
-			<label class="sr-only">Fecha de nacimeinto</label>
-			<span class="input-group-addon">
-				<i class="fa fa-birthday-cake"></i> <%= f.label 'Nacimiento' %>
-			</span>
-      <input id="user_fechaNacimiento" name="user[fechaNacimiento]" type="date" class="form-control"/>
-		</div>
-  -->
-
-  <!-- Sexo -->
-    <div class="form-group input-group">
-      <label class="sr-only"> Sexo </label>
-      <span class="input-group-addon">
-        <i class="fa fa-venus-mars"></i> <label for="user_sexo">Sexo</label>
-      </span>
-			<%= f.select :sexo, [["Seleccionar su opcion", ""], ["Hombre", "Hombre"], ["Mujer", "Mujer"], ["Otro", "Otro"]], {}, {class: 'form-control'} %>
-    </div>
-
-  <!-- Email -->
-    <div class="form-group input-group">
-      <label class="sr-only"> Email </label>
-      <span class="input-group-addon">
-        <i class="fa fa-envelope"></i> <%= f.label 'Email' %>
-      </span>
-      <%= f.email_field :email, required: true, autofocus: true, placeholder: 'Ingrese su mail', class: 'form-control' %>
-    </div>
-
-  <!-- Cosas de devise -->
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-  <!-- Contraseña 01 -->
-    <i>(Deja estos dos espacios en blanco si no quieres cambiar la contraseña)</i><br />
-    <div class="form-group input-group">
-      <label class="sr-only">Contraseña</label>
-      <span class="input-group-addon">
-        <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
-      </span>
-      <%= f.password_field :password, required: false, autocomplete: "off", placeholder:"6 caracteres como minimo", class: 'form-control' %>
-    </div>
-
-  <!-- Contraseña 02 -->
-    <div class="form-group input-group">
-      <label class="sr-only">Confirmar contraseña</label>
-      <span class="input-group-addon">
-        <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
-      </span>
-      <%= f.password_field :password_confirmation, required: false, autocomplete: "off", placeholder: 'Repetir contraseña', class: 'form-control'%>
-    </div>
-
-  <!-- Contraseña 03 -->
-		<i>(Necesitamos tu contraseña actual para actualizar los cambios)</i><br />
-    <div class="form-group input-group">
-			<label class="sr-only">Contraseña</label>
-			<span class="input-group-addon">
-				<i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
-			</span>
-			<%= f.password_field :current_password, required: true, autocomplete: "off", placeholder: 'Contraseña actual', class: 'form-control' %>
-		</div>
-
-  <!-- Boton para actualizar y volver atrás  -->
-    <div class="actions">
-			<%= f.submit "Actualizar", :class => 'btn btn-default actions' %>
-			<%= link_to "Volver", :root, :class => 'btn btn-secondary actions' %>
-    </div>
-  <% end %>
-
-  <!-- Boton de borrar cuenta -->
-  <br />
-  <div class="actions">
-	  <%= link_to "Borrar cuenta", registration_path(resource_name), data: { confirm: "¿Estas seguro de que quieres borrar esta cuenta?" }, method: :delete, :class => 'btn btn-danger actions' %>
   </div>
 
-</body>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <% if devise_error_messages? %>
+        <div class="alert alert-danger devise-errors">
+          <%= devise_error_messages! %>
+        </div>
+      <% end %>
+      
+      <!-- Nombre -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Nombre </label>
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i> <%= f.label 'Nombre' %>
+        </span>
+        <%= f.text_field :nombre, required: true, placeholder: 'Ingrese su nombre', class: 'form-control' %>
+      </div>
+
+      <!-- Apellido -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Apellido </label>
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i> <%= f.label 'Apellido' %>
+        </span>
+        <%= f.text_field :apellido, required: true, placeholder: 'Ingrese su apellido', class: 'form-control' %>
+      </div>
+
+      <!-- Fecha de nacimiento
+      <div class="form-group input-group">
+        <label class="sr-only">Fecha de nacimeinto</label>
+        <span class="input-group-addon">
+          <i class="fa fa-birthday-cake"></i> <%= f.label 'Nacimiento' %>
+        </span>
+        <input id="user_fechaNacimiento" name="user[fechaNacimiento]" type="date" class="form-control"/>
+      </div>
+      -->
+
+      <!-- Sexo -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Sexo </label>
+        <span class="input-group-addon">
+          <i class="fa fa-venus-mars"></i> <label for="user_sexo">Sexo</label>
+        </span>
+        <%= f.select :sexo, [["Seleccionar su opcion", ""], ["Hombre", "Hombre"], ["Mujer", "Mujer"], ["Otro", "Otro"]], {}, {class: 'form-control'} %>
+      </div>
+
+      <!-- Facultad -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Facultad </label>
+        <span class="input-group-addon">
+          <i class="fa fa-institution"></i> <label for="user_faculty_id">Facultad</label>
+        </span>
+        <%= f.collection_select(:faculty_id, Faculty.all.order('facultad ASC'), :id, :facultad_y_universidad, { include_blank: true }, {class: 'form-control'}) %>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Email </label>
+        <span class="input-group-addon">
+          <i class="fa fa-envelope"></i> <%= f.label 'Email' %>
+        </span>
+        <%= f.email_field :email, required: true, autofocus: true, placeholder: 'Ingrese su mail', class: 'form-control' %>
+      </div>
+
+      <!-- Cosas de devise -->
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <!-- Contraseña 01 -->
+      <i>(Deja estos dos espacios en blanco si no quieres cambiar la contraseña)</i><br />
+      <div class="form-group input-group">
+        <label class="sr-only">Contraseña</label>
+        <span class="input-group-addon">
+          <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
+        </span>
+        <%= f.password_field :password, required: false, autocomplete: "off", placeholder:"6 caracteres como minimo", class: 'form-control' %>
+      </div>
+
+      <!-- Contraseña 02 -->
+      <div class="form-group input-group">
+        <label class="sr-only">Confirmar contraseña</label>
+        <span class="input-group-addon">
+          <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
+        </span>
+        <%= f.password_field :password_confirmation, required: false, autocomplete: "off", placeholder: 'Repetir contraseña', class: 'form-control'%>
+      </div>
+
+      <!-- Contraseña 03 -->
+      <i>(Necesitamos tu contraseña actual para actualizar los cambios)</i><br />
+      <div class="form-group input-group">
+        <label class="sr-only">Contraseña</label>
+        <span class="input-group-addon">
+          <i class="fa fa-key"></i> <%= f.label 'Contraseña' %>
+        </span>
+        <%= f.password_field :current_password, required: true, autocomplete: "off", placeholder: 'Contraseña actual', class: 'form-control' %>
+      </div>
+
+      <!-- Boton para actualizar y volver atrás  -->
+      <div class="actions">
+        <%= f.submit "Actualizar", :class => 'btn btn-primary actions' %>
+        <%= link_to "Volver", :root, :class => 'btn btn-secondary actions' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="panel-footer">
+    <!-- Boton de borrar cuenta -->
+    <br />
+    <div class="actions">
+      <%= link_to "Borrar cuenta", registration_path(resource_name), data: { confirm: "¿Estas seguro de que quieres borrar esta cuenta?" }, method: :delete, :class => 'btn btn-danger actions' %>
+    </div>
+  </div>
+</div>

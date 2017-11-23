@@ -4,12 +4,8 @@
     <title>Educanding</title>
     <%= csrf_meta_tags %>
 
-    <link rel="stylesheet" href="assets/stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="assets/stylesheets/bootstrap-theme.css">
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
   </head>
 
   <body>
@@ -40,14 +36,14 @@
 
 
 
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-
     <div class="container">
+      <% if notice %>
+        <div class="alert alert-success alert-dismissible"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger alert-dismissible"><%= alert %></div>
+      <% end %>
+
       <%= yield %>
     </div>
     

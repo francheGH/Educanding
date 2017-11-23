@@ -11,5 +11,13 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  setTimeout(function() {
+    $('.alert-dismissible').hide(300);
+  }, 5000);
+})

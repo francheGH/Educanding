@@ -61,3 +61,5 @@ gem 'devise'
 
 # Para los iconos
 gem 'font-awesome-rails'
+
+gem 'jquery-rails'
