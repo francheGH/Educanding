@@ -1,0 +1,2 @@
+module CommentQuestionsHelper
+end

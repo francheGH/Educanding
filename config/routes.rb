@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   
   #¿Rutas de preguntas?
   resources :questions
+  resources :commentAnswers
+  resources :commentQuestions
 
 end
