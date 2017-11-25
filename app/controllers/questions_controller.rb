@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @question.update_attribute(:visitas, @question.visitas + 1)
   end
 
   def new
@@ -17,10 +18,6 @@ class QuestionsController < ApplicationController
 
   def destroy
     redirect_to questions_path
-  end
-
-  def new 
-    @question = Question.new
   end
 
   def update

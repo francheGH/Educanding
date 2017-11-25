@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   #Rutas de devise (usuarios)
   devise_for :users
   
-  #¿Rutas de preguntas?
+  #Rutas de preguntas
   resources :questions
-  resources :commentAnswers
-  resources :commentQuestions
+  
+  #Rutas de respuestas
+  resources :answers
 
 end
