@@ -1,2 +1,22 @@
-<h1>Answers#new</h1>
-<p>Find me in app/views/answers/new.html.erb</p>
+<div class="panel-center col-md-8">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h3> Responder a la pregunta <%= @q.pregunta %> </h3>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @answer do |a| %>
+    
+      <div class="row">
+        <div class="col-md-6">
+          <%= a.label :respuesta %>
+          <%= a.text_area :respuesta, class: 'form-control', label: 'Respuesta', placeholder: 'Ingrese la respuesta' %>
+        </div>
+      </div>
+      </br>
+          
+      <%= a.submit "Responder", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

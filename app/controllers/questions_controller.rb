@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    if @question.update(params.require(:question).permit(:faculty_id, :pregunta, :detalles))
+    if @question.update(question_params)
       redirect_to @question, notice: "Pregunta modificada."
     else
       render :edit
@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
   end
   
   def create
-    @question = Question.new(params.require(:question).permit(:faculty_id, :pregunta, :detalles))
+    @question = Question.new(question_params)
     @question.user_id = current_user.id
     
     if @question.save
@@ -38,5 +38,10 @@ class QuestionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  private
+  def question_params
+    params.require(:question).permit(:faculty_id, :pregunta, :detalles)
   end
 end

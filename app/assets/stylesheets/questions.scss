@@ -1,18 +1,22 @@
-.panel-left {
+.panel-pregunta {
   float: left;
-  margin: 0 auto;
+  margin-bottom: 20px;
   border-radius: 6px;
   background-color: #F5F5F5;
 }
 
-.panel {
+.panel-respuesta {
+  margin-bottom: 20px;
   border-radius: 6px;
+  margin-left: 50px;
   background-color: #F5F5F5;
 }
 
-.col-centered{
-  float: none;
-  margin: 0 auto;
+.panel-comentario {
+  margin-bottom: 20px;
+  border-radius: 6px;
+  margin-left: 100px;
+  background-color: #F5F5F5;
 }
 
 /* Style the tab */
