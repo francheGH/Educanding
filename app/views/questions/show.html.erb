@@ -17,11 +17,13 @@
     </div>
 
     <div class="panel-footer">
-      <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
-      <% if current_user == @question.user %>
-        <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
-        <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
-      <%end%>
+      <% if user_signed_in? %>
+        <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
+        <% if current_user == @question.user %>
+          <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
+          <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%end%>
+      <% end %>
     </div>
   </div>
 </div>

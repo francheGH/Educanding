@@ -18,7 +18,7 @@
 
 $(document).ready(function() {
   setTimeout(function() {
-    $('.alert-dismissible').hide(300);
+    $('.alert-dismissable').hide(300);
   }, 5000);
 })
 

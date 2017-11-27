@@ -20,6 +20,7 @@ class AnswersController < ApplicationController
 
     if @answer.save
       redirect_to $q, notice: "Pregunta realizada."
+      $q.update_attribute(:cant_respuestas, $q.cant_respuestas + 1)
     else
       render :new
     end

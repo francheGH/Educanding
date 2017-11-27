@@ -34,14 +34,15 @@
       </div>
     </nav>
 
-
-
     <div class="container">
       <% if notice %>
-        <div class="alert alert-success alert-dismissible"><%= notice %></div>
+        <div class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+          <%= notice %>
+        </div>
       <% end %>
       <% if alert %>
-        <div class="alert alert-danger alert-dismissible"><%= alert %></div>
+        <div class="alert alert-danger alert-dismissable"><%= alert %></div>
       <% end %>
 
       <%= yield %>

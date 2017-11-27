@@ -2,7 +2,7 @@
 <div class="col-md-8">
 
   <!-- Por cada pregunta se hace un cuadrado -->
-  <%@questions.each do |question|%>
+  <%@questions.crono.each do |question|%>
     <div class="panel">
 
       <!-- Se tiene la parte de arriba del cuadrado -->
@@ -44,9 +44,11 @@
 
 <!-- Estos son los listados -->
 <div class="col-md-4">
-  <%= link_to "Crear pregunta", new_question_path, class: 'btn btn-primary' %>
-  </br>
-  </br>
+  <% if user_signed_in? %>
+    <%= link_to "Crear pregunta", new_question_path, class: 'btn btn-primary' %>
+    </br>
+    </br>
+  <% end %>
 
   <div class="panel">
     <div class="tab">
