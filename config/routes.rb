@@ -11,5 +11,9 @@ Rails.application.routes.draw do
   
   #Rutas de respuestas
   resources :answers
-
+  
+  #Rutas de votos
+  resources :avotes
+  resources :qvotes
+  
 end

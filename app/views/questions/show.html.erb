@@ -14,17 +14,46 @@
 
     <div class="panel-body">
       <p> <%= @question.detalles %></p>
+
+      <div class="pull-right" >
+        <p> Votos positivos:<%= @question.positive_votes %> | Votos negativos:<%= @question.negative_votes %></p>
+      </div>
     </div>
 
-    <div class="panel-footer">
-      <% if user_signed_in? %>
-        <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
-        <% if current_user == @question.user %>
-          <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
-          <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
-        <%end%>
-      <% end %>
-    </div>
+    <% if user_signed_in? %>
+      <div class="panel-footer">
+        <div class="pull-left">
+          <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
+
+          <% if current_user == @question.user %>
+            <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
+            <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+
+        <div class="pull-right" style="margin-bottom:10px">
+          <% if Qvote.exists?(:user_id => current_user.id, :question_id => @question.id, :positivo => true)%>
+            <%= link_to qvote_path(:user_id => current_user.id, :question_id => @question.id, :positivo => true), method: :delete, class: 'btn btn-default' do%>
+              <i class="fa fa-thumbs-up"></i>
+            <% end %>
+          <% else %>
+            <%= link_to new_qvote_path(:user_id => current_user.id, :question_id => @question.id, :positivo => true), class: 'btn btn-default' do%>
+              <i class="fa fa-thumbs-o-up"></i>
+            <% end %>
+          <% end %>
+
+          <% if Qvote.exists?(:user_id => current_user.id, :question_id => @question.id, :positivo => false)%>
+            <%= link_to qvote_path(:user_id => current_user.id, :question_id => @question.id, :positivo => false), method: :delete, class: 'btn btn-default' do%>
+              <i class="fa fa-thumbs-down"></i>
+            <% end %>
+          <% else %>
+            <%= link_to new_qvote_path(:user_id => current_user.id, :question_id => @question.id, :positivo => false), class: 'btn btn-default' do%>
+              <i class="fa fa-thumbs-o-down"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 </br>
@@ -44,11 +73,21 @@
     <div class="panel-body">
       <p> <%= answer.respuesta %></p>
     </div>
-    <% if current_user == answer.user %>
-      <div class="panel-footer">
-        <%= link_to "Editar", edit_answer_path(answer), class: 'btn btn-primary' %>
-        <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger btn-sm' %>
-      </div>
-    <%end%>
+
+    <div class="panel-footer">
+      <% if user_signed_in? %>
+
+        <% if Avote.exists?(:user_id => current_user.id, :answer => answer.id)%>
+          <%= link_to "Quitar voto", avote_path(:user_id => current_user.id, :question_id => @question.id, :answer_id => answer.id), method: :delete, class: 'btn btn-danger btn-sm' %>
+        <% else %>
+          <%= link_to "Votar", new_avote_path(:user_id => current_user.id, :question_id => @question.id, :answer_id => answer.id), class: 'btn btn-primary' %>
+        <% end %>
+
+        <% if current_user == answer.user %>
+            <%= link_to "Editar", edit_answer_path(answer), class: 'btn btn-primary' %>
+            <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%end%>
+      <%end%>
+    </div>
   </div>
 <%end%>

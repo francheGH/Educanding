@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommentQuestionsControllerTest < ActionDispatch::IntegrationTest
+class QvoteTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

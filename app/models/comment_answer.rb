@@ -1,2 +1,0 @@
-class CommentAnswer < ApplicationRecord
-end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125220525) do
+ActiveRecord::Schema.define(version: 20171128174733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,20 +21,18 @@ ActiveRecord::Schema.define(version: 20171125220525) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "positive_votes", default: 0
+    t.integer "negative_votes", default: 0
   end
 
-  create_table "comment_answers", force: :cascade do |t|
-    t.string "text"
-    t.string "date"
+  create_table "avotes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "answer_id"
+    t.boolean "positivo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "comment_questions", force: :cascade do |t|
-    t.string "text"
-    t.string "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_avotes_on_answer_id"
+    t.index ["user_id"], name: "index_avotes_on_user_id"
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -55,6 +53,18 @@ ActiveRecord::Schema.define(version: 20171125220525) do
     t.integer "faculty_id"
     t.integer "visitas", default: 0
     t.integer "cant_respuestas", default: 0
+    t.integer "positive_votes", default: 0
+    t.integer "negative_votes", default: 0
+  end
+
+  create_table "qvotes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "question_id"
+    t.boolean "positivo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_qvotes_on_question_id"
+    t.index ["user_id"], name: "index_qvotes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,8 +85,13 @@ ActiveRecord::Schema.define(version: 20171125220525) do
     t.string "sexo"
     t.date "fechaNacimiento"
     t.integer "faculty_id"
+    t.integer "puntos", default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "avotes", "answers"
+  add_foreign_key "avotes", "users"
+  add_foreign_key "qvotes", "questions"
+  add_foreign_key "qvotes", "users"
 end
