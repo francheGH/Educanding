@@ -14,6 +14,7 @@ class Question < ApplicationRecord
   
   belongs_to :user
   belongs_to :faculty
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_many :qvotes, dependent: :destroy
+  has_many :qcomments, dependent: :destroy
 end

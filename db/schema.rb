@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128174733) do
+ActiveRecord::Schema.define(version: 20171128184845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acomments", force: :cascade do |t|
+    t.string "texto"
+    t.bigint "user_id"
+    t.bigint "question_id"
+    t.bigint "answer_id"
+    t.integer "positive_votes", default: 0
+    t.integer "negative_votes", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_acomments_on_answer_id"
+    t.index ["question_id"], name: "index_acomments_on_question_id"
+    t.index ["user_id"], name: "index_acomments_on_user_id"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string "respuesta"
@@ -42,6 +56,18 @@ ActiveRecord::Schema.define(version: 20171128174733) do
     t.string "ciudad"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "qcomments", force: :cascade do |t|
+    t.string "texto"
+    t.bigint "user_id"
+    t.bigint "question_id"
+    t.integer "positive_votes", default: 0
+    t.integer "negative_votes", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_qcomments_on_question_id"
+    t.index ["user_id"], name: "index_qcomments_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -90,8 +116,13 @@ ActiveRecord::Schema.define(version: 20171128174733) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "acomments", "answers"
+  add_foreign_key "acomments", "questions"
+  add_foreign_key "acomments", "users"
   add_foreign_key "avotes", "answers"
   add_foreign_key "avotes", "users"
+  add_foreign_key "qcomments", "questions"
+  add_foreign_key "qcomments", "users"
   add_foreign_key "qvotes", "questions"
   add_foreign_key "qvotes", "users"
 end

@@ -24,6 +24,7 @@
       <div class="panel-footer">
         <div class="pull-left">
           <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
+           <%= link_to "Comentar", qcomments_new_path(:question_id => @question.id), class: 'btn btn-primary' %>
 
           <% if current_user == @question.user %>
             <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
@@ -58,6 +59,38 @@
 </div>
 </br>
 
+<%@question.qcomments.order('created_at ASC').each do |qcomment|%>
+  <div class="panel-comentario col-md-8">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-9 text-left">
+          <p> Creada por <%= qcomment.user.nombre %> <%= qcomment.user.apellido %></p>
+        </div>
+        <div class="col-sm-3 text-right">
+          <h4><small><em><%=qcomment.created_at.strftime("%d/%m/%Y")%> <%=qcomment.created_at.strftime("%H:%M:%S")%></em></small></h4>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p> <%= qcomment.texto %></p>
+    </div>
+
+    <div class="panel-footer">
+      <% if user_signed_in? %>
+
+        <% if current_user == qcomment.user %>
+            <%= link_to "Editar", edit_qcomments_path(qcomment), class: 'btn btn-primary' %>
+            <%= link_to "Eliminar", qcomment, method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+<%end%>
+
+
+
+
+
 <%@question.answers.order('created_at ASC').each do |answer|%>
   <div class="panel-respuesta col-md-8">
     <div class="panel-heading">
@@ -76,7 +109,7 @@
 
     <div class="panel-footer">
       <% if user_signed_in? %>
-
+        <%= link_to "Comentar", acomments_new_path(:answer_id => @answer.id), class: 'btn btn-primary' %>
         <% if Avote.exists?(:user_id => current_user.id, :answer => answer.id)%>
           <%= link_to "Quitar voto", avote_path(:user_id => current_user.id, :question_id => @question.id, :answer_id => answer.id), method: :delete, class: 'btn btn-danger btn-sm' %>
         <% else %>
@@ -91,3 +124,4 @@
     </div>
   </div>
 <%end%>
+
