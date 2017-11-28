@@ -113,17 +113,6 @@
     </div>
     <div class="panel-body">
       <p> <%= answer.respuesta %></p>
-
-<<<<<<< HEAD
-    <div class="panel-footer">
-      <% if user_signed_in? %>
-        <%= link_to "Comentar", acomments_new_path(:answer_id => @answer.id), class: 'btn btn-primary' %>
-        <% if Avote.exists?(:user_id => current_user.id, :answer => answer.id)%>
-          <%= link_to "Quitar voto", avote_path(:user_id => current_user.id, :question_id => @question.id, :answer_id => answer.id), method: :delete, class: 'btn btn-danger btn-sm' %>
-        <% else %>
-          <%= link_to "Votar", new_avote_path(:user_id => current_user.id, :question_id => @question.id, :answer_id => answer.id), class: 'btn btn-primary' %>
-        <% end %>
-=======
       <div class="pull-right" >
         <p> Votos positivos:<%= answer.positive_votes %> | Votos negativos:<%= answer.negative_votes %></p>
       </div>
@@ -131,8 +120,6 @@
 
     <% if user_signed_in? %>
       <div class="panel-footer">
->>>>>>> 87fa7bb7b1908afcfe1dc70cc71c3a6b274ee787
-
         <div class="pull-left" style="margin-bottom:10px">
           <% if current_user == answer.user %>
             <% if current_user.puntos > 999 %>
