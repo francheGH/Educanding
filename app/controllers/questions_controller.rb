@@ -1,6 +1,10 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    if user_signed_in?
+      @questions = Question.where(:faculty_id => current_user.faculty.id)
+    else
+      @questions = Question.all
+    end
   end
 
   def show
@@ -32,6 +36,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user_id = current_user.id
+    @question.faculty_id = current_user.faculty.id
     
     if @question.save
       redirect_to @question, notice: "Pregunta realizada."
