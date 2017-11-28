@@ -1,2 +1,22 @@
-<h1>Acomments#edit</h1>
-<p>Find me in app/views/acomments/edit.html.erb</p>
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Editar comentario </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @acomments do |ac| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= ac.label :texto %>
+          <%= ac.text_area :texto, class: 'form-control', label: 'Texto', placeholder: 'Ingrese el texto' %>
+        </div>
+      </div>
+      </br>
+
+      <%= ac.submit "Editar", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

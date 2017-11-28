@@ -1,2 +1,22 @@
-<h1>Answers#edit</h1>
-<p>Find me in app/views/answers/edit.html.erb</p>
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Editar respuesta </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @answers do |a| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= a.label :respuesta %>
+          <%= a.text_area :respuesta, class: 'form-control', label: 'Respuesta', placeholder: 'Ingrese la respuesta' %>
+        </div>
+      </div>
+      </br>
+
+      <%= a.submit "Editar", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

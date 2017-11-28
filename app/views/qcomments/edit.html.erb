@@ -1,2 +1,22 @@
-<h1>Qcomments#edit</h1>
-<p>Find me in app/views/qcomments/edit.html.erb</p>
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Editar comentario </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @qcomments do |qc| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= qc.label :texto %>
+          <%= qc.text_area :texto, class: 'form-control', label: 'Texto', placeholder: 'Ingrese el texto' %>
+        </div>
+      </div>
+      </br>
+
+      <%= qc.submit "Editar", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

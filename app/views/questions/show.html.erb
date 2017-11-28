@@ -25,7 +25,7 @@
       <div class="panel-footer">
         <div class="pull-left" style="margin-bottom:10px">
           <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
-           <%= link_to "Comentar", qcomments_new_path(:question_id => @question.id), class: 'btn btn-primary' %>
+           <%= link_to "Comentar", new_qcomment_path(:question_id => @question.id), class: 'btn btn-primary' %>
 
           <% if current_user == @question.user %>
             <% if current_user.puntos > 999 %>
@@ -86,7 +86,7 @@
       <% if user_signed_in? %>
 
         <% if current_user == qcomment.user %>
-            <%= link_to "Editar", edit_qcomments_path(qcomment), class: 'btn btn-primary' %>
+            <%= link_to "Editar", edit_qcomment_path(qcomment), class: 'btn btn-primary' %>
             <%= link_to "Eliminar", qcomment, method: :delete, class: 'btn btn-danger btn-sm' %>
         <%end%>
       <%end%>
@@ -107,7 +107,7 @@
         </div>
         <div class="col-sm-3 text-right">
           <h4><small><em><%= answer.created_at.strftime("%d/%m/%Y")%> <%=answer.created_at.strftime("%H:%M:%S") %></em></small></h4>
-          <h4><small><em><%= answer.faculty.facultad_y_universidad %></em></small></h4>
+         
         </div>
       </div>
     </div>
@@ -121,7 +121,9 @@
     <% if user_signed_in? %>
       <div class="panel-footer">
         <div class="pull-left" style="margin-bottom:10px">
+        <%= link_to "Comentar", new_acomment_path(:answer_id => answer.id, :question_id => @question.id), class: 'btn btn-primary' %>
           <% if current_user == answer.user %>
+
             <% if current_user.puntos > 999 %>
               <%= link_to "Editar", edit_answer_path(answer), class: 'btn btn-primary' %>
             <%end%>
@@ -157,5 +159,32 @@
       </div>
     <%end%>
   </div>
+
+  <%answer.acomments.order('created_at ASC').each do |qanswer|%>
+  <div class="panel-comentario col-md-8">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-9 text-left">
+          <p> Creada por <%= qanswer.user.nombre %> <%= qanswer.user.apellido %></p>
+        </div>
+        <div class="col-sm-3 text-right">
+          <h4><small><em><%=qanswer.created_at.strftime("%d/%m/%Y")%> <%=qanswer.created_at.strftime("%H:%M:%S")%></em></small></h4>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p> <%= qanswer.texto %></p>
+    </div>
+
+    <div class="panel-footer">
+      <% if user_signed_in? %>
+        <% if current_user == qanswer.user %>
+            <%= link_to "Editar", edit_acomment_path(qanswer), class: 'btn btn-primary' %>
+            <%= link_to "Eliminar", qanswer, method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+<%end%>
 <%end%>
 

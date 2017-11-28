@@ -1,13 +1,13 @@
 class AcommentsController < ApplicationController
   def new
-  	@acomments = Acomment.new
+    @acomments = Acomment.new
     @a = Answer.find(params[:answer_id])
     $q = Question.find(params[:question_id])
     $a = Answer.find(params[:answer_id])
   end
 
   def create
-  	@acomments = Acommnet.new(acomment_params)
+    @acomments = Acomment.new(acomment_params)
     @acomments.user_id = current_user.id
     @acomments.question_id = $q.id
     @acomments.answer_id = $a.id
@@ -23,6 +23,16 @@ class AcommentsController < ApplicationController
   end
 
   def edit
+    @acomments = Acomment.find(params[:id])
+  end
+
+  def update
+    @acomments = Acomment.find(params[:id])
+    if @acomments.update(acomment_params)
+      redirect_to @acomments.question, notice: "Comentario modificado"
+    else
+      render :edit
+    end
   end
 
   private
