@@ -12,12 +12,6 @@ class Question < ApplicationRecord
     order('visitas ASC') #Preguntas menos visitadas
   }
   
-  belongs_to :user
-  belongs_to :faculty
-
-  has_many :taggings
-  has_many :tags, through: :taggings
-
   def self.tagged_with(name)
     Tag.find_by!(nombre: name).questions
   end
@@ -32,7 +26,11 @@ class Question < ApplicationRecord
     end
   end
 
+  belongs_to :user
+  belongs_to :faculty
   has_many :answers, dependent: :destroy
   has_many :qvotes, dependent: :destroy
   has_many :qcomments, dependent: :destroy
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 end

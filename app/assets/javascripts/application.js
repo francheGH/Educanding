@@ -42,3 +42,9 @@ function openTab(evt, TabName) {
   document.getElementById(TabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+$(document).ready(function() {
+  $('.js-example-basic-multiple').select2({
+    placeholder: 'Select an option'
+  });
+});
