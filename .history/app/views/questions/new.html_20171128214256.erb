@@ -1,0 +1,61 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Crear una pregunta </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @question do |q| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :facultad %>
+          <%= q.collection_select(:faculty_id, Faculty.all.order('facultad ASC'), :id, :facultad_y_universidad, { include_blank: true }, {class: 'form-control'}) %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :pregunta %>
+          <%= q.text_area :pregunta, class: 'form-control', label: 'Pregunta', placeholder: 'Ingrese la pregunta' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :detalles %>
+          <%= q.text_area :detalles, class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+        <%= q.label :etiquetas %>
+          <%= q.text_area :tag_list, class: 'form-control', label: 'Etiquetas',placeholder: "Ingrese las etiquetas" %>
+
+          <%= form_for @questions do |f| %>
+            <% Tag.all.each do |tag| %>
+              <div class="form-group text-left">
+                <%= check_box_tag tag.nombre,
+                    tag.nombre,
+                    :nombre => 'question[tag][]',
+                    class: "form-control" %>
+                <%= label_tag tag.nombre, tag.nombre %>
+              </div>
+            <% end %>
+            <%= submit_tag %>
+          <% end %>
+
+
+        </div>
+      </div>
+      </br>
+
+      <%= q.submit "Crear pregunta", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Editar pregunta </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @question do |q| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :facultad %>
+          <%= q.collection_select(:faculty_id, Faculty.all.order('facultad ASC'), :id, :facultad_y_universidad, { include_blank: true }, {class: 'form-control'}) %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :pregunta %>
+          <%= q.text_area :pregunta, class: 'form-control', label: 'Pregunta', placeholder: 'Ingrese la pregunta' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :detalles %>
+          <%= q.text_area :detalles, class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="large-10 large-centered columns">
+          <%= q.text_field :tag_list, placeholder: "Tags separated with comma" %>
+        </div>
+      </div>
+
+      <%= q.submit "Editar", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="panel-pregunta col-md-8">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-9 text-left">
+          <h2><%=@question.pregunta%></h2>
+          <p> Creada por <%= @question.user.nombre %> <%= @question.user.apellido %></p>
+        </div>
+        <div class="col-sm-3 text-right">
+          <h4><small><em><%=@question.created_at.strftime("%d/%m/%Y")%></em></small></h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <p> <%= @question.detalles %></p>
+    </div>
+
+    <div class="tags">
+      <%=raw post.tag_list %>
+    </div>
+    
+
+
+    <div class="panel-footer">
+      Tags: <%= raw @question.tags.map(&:nombre).map { |t| link_to t, tag_path(t) }.join(', ') %>
+      <% if user_signed_in? %>
+        <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
+        <% if current_user == @question.user %>
+          <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
+          <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%end%>
+      <% end %>
+    </div>
+  </div>
+</div>
+</br>
+
+<%@question.answers.order('created_at ASC').each do |answer|%>
+  <div class="panel-respuesta col-md-8">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-9 text-left">
+          <p> Creada por <%= answer.user.nombre %> <%= answer.user.apellido %></p>
+        </div>
+        <div class="col-sm-3 text-right">
+          <h4><small><em><%=@question.created_at.strftime("%d/%m/%Y")%> <%=answer.created_at.strftime("%H:%M:%S")%></em></small></h4>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p> <%= answer.respuesta %></p>
+    </div>
+    <% if current_user == answer.user %>
+      <div class="panel-footer">
+        <%= link_to "Editar", edit_answer_path(answer), class: 'btn btn-primary' %>
+        <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger btn-sm' %>
+      </div>
+    <%end%>
+  </div>
+<%end%>
