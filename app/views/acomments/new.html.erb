@@ -1,0 +1,22 @@
+<div class="panel-center col-md-8">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h3> Comentar <%= @a.respuesta %> </h3>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @acomments do |ac| %>
+    
+      <div class="row">
+        <div class="col-md-6">
+          <%= ac.label :texto %>
+          <%= ac.text_area :texto, class: 'form-control', label: 'Comentario', placeholder: 'Ingrese el comentario' %>
+        </div>
+      </div>
+      </br>
+          
+      <%= ac.submit "Comentar", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

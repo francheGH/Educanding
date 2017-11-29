@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  texto: MyString
+  user: one
+  question: one
+  positive_votes: 1
+  negative_votes: 1
+
+two:
+  texto: MyString
+  user: two
+  question: two
+  positive_votes: 1
+  negative_votes: 1

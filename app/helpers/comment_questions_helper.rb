@@ -1,2 +1,0 @@
-module CommentQuestionsHelper
-end

@@ -10,14 +10,6 @@
 
       <div class="row">
         <div class="col-md-6">
-          <%= q.label :facultad %>
-          <%= q.collection_select(:faculty_id, Faculty.all.order('facultad ASC'), :id, :facultad_y_universidad, { include_blank: true }, {class: 'form-control'}) %>
-        </div>
-      </div>
-      </br>
-
-      <div class="row">
-        <div class="col-md-6">
           <%= q.label :pregunta %>
           <%= q.text_area :pregunta, class: 'form-control', label: 'Pregunta', placeholder: 'Ingrese la pregunta' %>
         </div>

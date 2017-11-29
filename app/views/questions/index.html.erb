@@ -20,7 +20,8 @@
             <p> Creada por <%= question.user.nombre %> <%= question.user.apellido %></p>
           </div>
           <div class="col-sm-3 text-right">
-            <h4><small><em><%=question.created_at.strftime("%d/%m/%Y")%></em></small></h4>
+            <h4><small><em><%= question.created_at.strftime("%d/%m/%Y") %></em></small></h4>
+            <h4><small><em><%= question.faculty.facultad_y_universidad %></em></small></h4>
           </div>
         </div>
       </div>

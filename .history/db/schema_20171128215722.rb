@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20171127201936) do
+=======
 ActiveRecord::Schema.define(version: 20171128184845) do
+>>>>>>> 0016cb02e73234e935a84971f67d35bee8b32daf
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,20 +51,6 @@ ActiveRecord::Schema.define(version: 20171128184845) do
     t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "index_avotes_on_answer_id"
     t.index ["user_id"], name: "index_avotes_on_user_id"
-  end
-
-  create_table "comment_answers", force: :cascade do |t|
-    t.string "text"
-    t.string "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "comment_questions", force: :cascade do |t|
-    t.string "text"
-    t.string "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -145,6 +135,10 @@ ActiveRecord::Schema.define(version: 20171128184845) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
+  add_foreign_key "taggings", "questions"
+  add_foreign_key "taggings", "tags"
+=======
   add_foreign_key "acomments", "answers"
   add_foreign_key "acomments", "questions"
   add_foreign_key "acomments", "users"
@@ -154,6 +148,5 @@ ActiveRecord::Schema.define(version: 20171128184845) do
   add_foreign_key "qcomments", "users"
   add_foreign_key "qvotes", "questions"
   add_foreign_key "qvotes", "users"
-  add_foreign_key "taggings", "questions"
-  add_foreign_key "taggings", "tags"
+>>>>>>> 0016cb02e73234e935a84971f67d35bee8b32daf
 end

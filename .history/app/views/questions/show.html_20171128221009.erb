@@ -13,13 +13,15 @@
       </div>
     </div>
 
+     <div class="tags">
+      Tags: <%=raw tag_links(@question.tag_list)%>
+      <%#=raw @question.tag_list %>
+      <%#= raw @question.tags.map(&:nombre).map { |t| link_to t, tag_path(t) }.join(', ') %>
+    </div>
+
     <div class="panel-body">
       <p> <%= @question.detalles %></p>
-        <div class="tags">
-          Tags: <%=raw tag_links(@question.tag_list)%>
-          <%#=raw @question.tag_list %>
-          <%#= raw @question.tags.map(&:nombre).map { |t| link_to t, tag_path(t) }.join(', ') %>
-        </div>
+
       <div class="pull-right" >
         <p> Votos positivos:<%= @question.positive_votes %> | Votos negativos:<%= @question.negative_votes %></p>
       </div>

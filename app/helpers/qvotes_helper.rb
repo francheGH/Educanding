@@ -1,0 +1,2 @@
+module QvotesHelper
+end
