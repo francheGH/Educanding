@@ -21,3 +21,11 @@ Faculty.create(universidad:"UNLP",facultad:"Periodismo",provincia:"Buenos Aires"
 Faculty.create(universidad:"UNLP",facultad:"Psicología",provincia:"Buenos Aires",ciudad:"La Plata")
 Faculty.create(universidad:"UNLP",facultad:"Trabajo Social",provincia:"Buenos Aires",ciudad:"La Plata")
 Faculty.create(universidad:"UNLP",facultad:"Veterinaria",provincia:"Buenos Aires",ciudad:"La Plata")
+
+Tag.create(nombre:"Matemática A")
+Tag.create(nombre:"Matemática B")
+Tag.create(nombre:"Física")
+Tag.create(nombre:"Lengua I")
+Tag.create(nombre:"Lengua II")
+Tag.create(nombre:"Lengua III")
+Tag.create(nombre:"Ingeniería de Software")

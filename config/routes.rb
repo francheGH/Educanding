@@ -1,26 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'qcomments/new'
-
-  get 'qcomments/create'
-
-  get 'qcomments/destroy'
-
-  get 'qcomments/edit'
-
-  get 'qcomments/update'
-
-  get 'acomments/new'
-
-  get 'acomments/create'
-
-  get 'acomments/destroy'
-
-  get 'acomments/edit'
-
-  get 'acomments/update'
-
   #Ruta raíz
   root :to => 'questions#index'
   
@@ -36,6 +15,8 @@ Rails.application.routes.draw do
   #Rutas de votos
   resources :avotes
   resources :qvotes
+  resources :acvotes
+  resources :qcvotes
 
   get 'tags/:tag', to: 'questions#index', as: :tag
   

@@ -15,11 +15,9 @@
 
     <div class="panel-body">
       <p> <%= @question.detalles %></p>
-        <div class="tags">
-          Tags: <%=raw tag_links(@question.tag_list)%>
-          <%#=raw @question.tag_list %>
-          <%#= raw @question.tags.map(&:nombre).map { |t| link_to t, tag_path(t) }.join(', ') %>
-        </div>
+      <div class="tags">
+        Etiquetas: <%=raw tag_links(@question.tag_list)%>
+      </div>
       <div class="pull-right" >
         <p> Votos positivos:<%= @question.positive_votes %> | Votos negativos:<%= @question.negative_votes %></p>
       </div>
@@ -84,18 +82,52 @@
     </div>
     <div class="panel-body">
       <p> <%= qcomment.texto %></p>
-    </div>  
-
-
-    <div class="panel-footer">
-      <% if user_signed_in? %>
-
-        <% if current_user == qcomment.user %>
-            <%= link_to "Editar", edit_qcomment_path(qcomment), class: 'btn btn-primary' %>
-            <%= link_to "Eliminar", qcomment, method: :delete, class: 'btn btn-danger btn-sm' %>
-        <%end%>
-      <%end%>
+      <div class="pull-right" >
+        <p> Votos positivos:<%= qcomment.positive_votes %> | Votos negativos:<%= qcomment.negative_votes %></p>
+      </div>
     </div>
+
+
+    <% if user_signed_in? %>
+      <div class="panel-footer">
+
+        <div class="pull-left" style="margin-bottom:10px">
+          <% if current_user == qcomment.user %>
+            <% if current_user.puntos > 999 %>
+              <%= link_to "Editar", edit_qcomment_path(qcomment), class: 'btn btn-primary' %>
+            <% end %>
+            <%= link_to "Eliminar", qcomment, method: :delete, class: 'btn btn-danger btn-sm' %>
+          <%end%>
+        </div>
+
+        <% if current_user.puntos > 14 %>
+          <div class="pull-right">
+            <% if Qcvote.exists?(:user_id => current_user.id, :qcomment_id => qcomment.id, :positivo => true)%>
+              <%= link_to qcvote_path(:user_id => current_user.id, :qcomment_id => qcomment.id, :positivo => true), method: :delete, class: 'btn btn-default' do%>
+                <i class="fa fa-thumbs-up"></i>
+              <% end %>
+            <% else %>
+              <%= link_to new_qcvote_path(:user_id => current_user.id, :qcomment_id => qcomment.id, :positivo => true), class: 'btn btn-default' do%>
+                <i class="fa fa-thumbs-o-up"></i>
+              <% end %>
+            <% end %>
+
+            <% if current_user.puntos > 99 %>
+              <% if Qcvote.exists?(:user_id => current_user.id, :qcomment_id => qcomment.id, :positivo => false)%>
+                <%= link_to qcvote_path(:user_id => current_user.id, :qcomment_id => qcomment.id, :positivo => false), method: :delete, class: 'btn btn-default' do%>
+                  <i class="fa fa-thumbs-down"></i>
+                <% end %>
+              <% else %>
+                <%= link_to new_qcvote_path(:user_id => current_user.id, :qcomment_id => qcomment.id, :positivo => false), class: 'btn btn-default' do%>
+                  <i class="fa fa-thumbs-o-down"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    <%end%>
   </div>
 <%end%>
 
@@ -165,30 +197,63 @@
     <%end%>
   </div>
 
-  <%answer.acomments.order('created_at ASC').each do |qanswer|%>
+  <%answer.acomments.order('created_at ASC').each do |acomment|%>
   <div class="panel-comentario col-md-8">
     <div class="panel-heading">
       <div class="row">
         <div class="col-sm-9 text-left">
-          <p> Creada por <%= qanswer.user.nombre %> <%= qanswer.user.apellido %></p>
+          <p> Creada por <%= acomment.user.nombre %> <%= acomment.user.apellido %></p>
         </div>
         <div class="col-sm-3 text-right">
-          <h4><small><em><%=qanswer.created_at.strftime("%d/%m/%Y")%> <%=qanswer.created_at.strftime("%H:%M:%S")%></em></small></h4>
+          <h4><small><em><%=acomment.created_at.strftime("%d/%m/%Y")%> <%=acomment.created_at.strftime("%H:%M:%S")%></em></small></h4>
         </div>
       </div>
     </div>
     <div class="panel-body">
-      <p> <%= qanswer.texto %></p>
+      <p> <%= acomment.texto %></p>
     </div>
 
-    <div class="panel-footer">
-      <% if user_signed_in? %>
-        <% if current_user == qanswer.user %>
-            <%= link_to "Editar", edit_acomment_path(qanswer), class: 'btn btn-primary' %>
-            <%= link_to "Eliminar", qanswer, method: :delete, class: 'btn btn-danger btn-sm' %>
-        <%end%>
-      <%end%>
-    </div>
+    <% if user_signed_in? %>
+      <div class="panel-footer">
+
+        <div class="pull-left" style="margin-bottom:10px">
+          <% if current_user == acomment.user %>
+            <% if current_user.puntos > 999 %>
+              <%= link_to "Editar", edit_acomment_path(acomment), class: 'btn btn-primary' %>
+            <% end %>
+            <%= link_to "Eliminar", acomment, method: :delete, class: 'btn btn-danger btn-sm' %>
+          <%end%>
+        </div>
+
+        <% if current_user.puntos > 14 %>
+          <div class="pull-right">
+            <% if Acvote.exists?(:user_id => current_user.id, :acomment_id => acomment.id, :positivo => true)%>
+              <%= link_to acvote_path(:user_id => current_user.id, :acomment_id => acomment.id, :positivo => true), method: :delete, class: 'btn btn-default' do%>
+                <i class="fa fa-thumbs-up"></i>
+              <% end %>
+            <% else %>
+              <%= link_to new_acvote_path(:user_id => current_user.id, :acomment_id => acomment.id, :positivo => true), class: 'btn btn-default' do%>
+                <i class="fa fa-thumbs-o-up"></i>
+              <% end %>
+            <% end %>
+
+            <% if current_user.puntos > 99 %>
+              <% if Acvote.exists?(:user_id => current_user.id, :acomment_id => acomment.id, :positivo => false)%>
+                <%= link_to acvote_path(:user_id => current_user.id, :acomment_id => acomment.id, :positivo => false), method: :delete, class: 'btn btn-default' do%>
+                  <i class="fa fa-thumbs-down"></i>
+                <% end %>
+              <% else %>
+                <%= link_to new_acvote_path(:user_id => current_user.id, :acomment_id => acomment.id, :positivo => false), class: 'btn btn-default' do%>
+                  <i class="fa fa-thumbs-o-down"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
+
+      </div>
+    <%end%>
   </div>
 <%end%>
 <%end%>

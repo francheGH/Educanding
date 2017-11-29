@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128184845) do
+ActiveRecord::Schema.define(version: 20171129140647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20171128184845) do
     t.index ["answer_id"], name: "index_acomments_on_answer_id"
     t.index ["question_id"], name: "index_acomments_on_question_id"
     t.index ["user_id"], name: "index_acomments_on_user_id"
+  end
+
+  create_table "acvotes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "acomment_id"
+    t.boolean "positivo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["acomment_id"], name: "index_acvotes_on_acomment_id"
+    t.index ["user_id"], name: "index_acvotes_on_user_id"
   end
 
   create_table "answers", force: :cascade do |t|
@@ -68,6 +78,16 @@ ActiveRecord::Schema.define(version: 20171128184845) do
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_qcomments_on_question_id"
     t.index ["user_id"], name: "index_qcomments_on_user_id"
+  end
+
+  create_table "qcvotes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "qcomment_id"
+    t.boolean "positivo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["qcomment_id"], name: "index_qcvotes_on_qcomment_id"
+    t.index ["user_id"], name: "index_qcvotes_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -134,10 +154,14 @@ ActiveRecord::Schema.define(version: 20171128184845) do
   add_foreign_key "acomments", "answers"
   add_foreign_key "acomments", "questions"
   add_foreign_key "acomments", "users"
+  add_foreign_key "acvotes", "acomments"
+  add_foreign_key "acvotes", "users"
   add_foreign_key "avotes", "answers"
   add_foreign_key "avotes", "users"
   add_foreign_key "qcomments", "questions"
   add_foreign_key "qcomments", "users"
+  add_foreign_key "qcvotes", "qcomments"
+  add_foreign_key "qcvotes", "users"
   add_foreign_key "qvotes", "questions"
   add_foreign_key "qvotes", "users"
   add_foreign_key "taggings", "questions"

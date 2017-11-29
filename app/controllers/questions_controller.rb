@@ -1,11 +1,13 @@
 class QuestionsController < ApplicationController
   def index
-    if user_signed_in?
+    if ((user_signed_in?) && (!current_user.faculty.nil?))
       @questions = Question.where(:faculty_id => current_user.faculty.id)
-  elsif params[:tag]
-        @questions = Question.tagged_with(params[:tag])
     else
         @questions = Question.all
+    end
+
+    if params[:tag]
+      @questions = Question.tagged_with(params[:tag]).where(:faculty_id => current_user.faculty.id)
     end
   end
 
