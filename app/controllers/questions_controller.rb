@@ -3,11 +3,15 @@ class QuestionsController < ApplicationController
     if ((user_signed_in?) && (!current_user.faculty.nil?))
       @questions = Question.where(:faculty_id => current_user.faculty.id)
     else
-        @questions = Question.all
+      @questions = Question.all
     end
 
     if params[:tag]
       @questions = Question.tagged_with(params[:tag]).where(:faculty_id => current_user.faculty.id)
+    end
+
+    if params[:spregunta] || params[:sdetalles] || params[:sfacultad]
+      @questions = Question.search(params[:spregunta], params[:sdetalles], params[:sfacultad])
     end
   end
 
