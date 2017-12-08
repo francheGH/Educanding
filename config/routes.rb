@@ -18,10 +18,13 @@ Rails.application.routes.draw do
   resources :acvotes
   resources :qcvotes
 
-  get 'tags/:tag', to: 'questions#index', as: :tag
-  
   #Rutas de comentarios
   resources :acomments
   resources :qcomments
+
+  #Rutas de facultades
+  resources :faculties
+
+  get 'tags/:tag', to: 'questions#index', as: :tag
   
 end

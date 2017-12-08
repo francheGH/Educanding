@@ -47,6 +47,7 @@ class QuestionsController < ApplicationController
     @question.faculty_id = current_user.faculty.id
     
     if @question.save
+      @question.faculty.update_attribute(:cant_preguntas, @question.faculty.cant_preguntas + 1)
       redirect_to @question, notice: "Pregunta realizada."
     else
       render :new

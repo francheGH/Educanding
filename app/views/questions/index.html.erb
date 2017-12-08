@@ -39,7 +39,6 @@
         </div>
       </div>
 
-
       <!-- Y luego el footer con los botones -->
       <div class="panel-footer">
         <div class="center">
@@ -57,30 +56,37 @@
 <!-- Estos son los listados -->
 <div class="col-md-4">
 
-  <div class="container" style="padding-bottom:10px; padding-left: 0px">
-    <%= form_tag(questions_path, :method => "get", id: "search-form") do %>
-      <div class="form-group">
-        <%= text_field_tag :spregunta, params[:spregunta], placeholder: "Pregunta", class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= text_field_tag :sdetalles, params[:sdetalles], placeholder: "Detalles", class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <% if user_signed_in? %>
-          <%= select_tag :sfacultad, options_from_collection_for_select(Faculty.all.order('facultad ASC'), "id", :facultad_y_universidad, current_user.faculty_id), include_blank: "Seleccione una facultad",class: "form-control" %>
-        <% else %>
-          <%= select_tag :sfacultad, options_from_collection_for_select(Faculty.all.order('facultad ASC'), "id", :facultad_y_universidad), include_blank: "Seleccione una facultad",class: "form-control" %>
-        <% end %>
-      </div>
-      <button type="submit" class="btn btn-default"> Buscar </button>
-    <% end %>
-  </div>
-
   <% if user_signed_in? %>
     <%= link_to "Crear pregunta", new_question_path, class: 'btn btn-primary' %>
     </br>
     </br>
   <% end %>
+
+  <div class="panel">
+    <div class="panel-header" style="margin-left:10px">
+      <h4> Buscador </h4>
+    </div>
+    <%= form_tag(questions_path, :method => "get", id: "search-form") do %>
+      <div class="panel-body">
+        <div class="form-group">
+          <%= text_field_tag :spregunta, params[:spregunta], placeholder: "Pregunta", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= text_field_tag :sdetalles, params[:sdetalles], placeholder: "Detalles", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <% if user_signed_in? %>
+            <%= select_tag :sfacultad, options_from_collection_for_select(Faculty.all.order('facultad ASC'), "id", :facultad_y_universidad, current_user.faculty_id), include_blank: "Seleccione una facultad",class: "form-control" %>
+          <% else %>
+            <%= select_tag :sfacultad, options_from_collection_for_select(Faculty.all.order('facultad ASC'), "id", :facultad_y_universidad), include_blank: "Seleccione una facultad",class: "form-control" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button type="submit" class="btn btn-default"> Buscar </button>
+      </div>
+    <% end %>
+  </div>
 
   <div class="panel">
     <div class="tab">
@@ -100,20 +106,20 @@
 
     <div id="Más-visitadas" class="tabcontent">
       <h4>Preguntas más vistadas</h4>
-<!--      <ol>
+      <ol>
         <% @questions.lista2.limit(10).each do |question| %>
               <li><%= link_to question.pregunta, question_path(question) %></li>
         <% end %>
-      </ol> -->
+      </ol>
     </div>
 
     <div id="Ménos-visitadas" class="tabcontent">
       <h4>Preguntas menos vistadas</h4>
-<!--      <ol>
+      <ol>
         <% @questions.lista3.limit(10).each do |question| %>
               <li><%= link_to question.pregunta, question_path(question) %></li>
         <% end %>
-      </ol> -->
+      </ol>
     </div>
   </div>
 </div>
