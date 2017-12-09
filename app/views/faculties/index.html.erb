@@ -1,0 +1,69 @@
+<div class="panel col-md-9">
+  <div class="panel-header" style="margin-left:10px">
+    <h2> Facultades </h2>
+  </div>
+  <div class="table-responsive panel-body">
+    <table class="table">
+      <tr>
+        <th> Facultad </th>
+        <th> Universidad </th>
+        <th> Provincia </th>
+        <th> Ciudad </th>
+        <th> Acciones </th>
+      </tr>
+      <% @faculties.alfab.each do |faculty| %>
+        <tr>
+            <td> <%= truncate(faculty.facultad, length: 20)%> </td>
+            <td> <%= truncate(faculty.universidad, length: 20)%> </td>
+            <td> <%= truncate(faculty.provincia, length: 20)%> </td>
+            <td> <%= truncate(faculty.ciudad, length: 20)%> </td>
+            <td>
+              <%= link_to "Mostrar", faculty, class: 'btn btn-primary btn-sm' %>
+              <!--% if ¿¿puntaje de los usuarios y/o admin?? %-->
+                <%= link_to "Editar", edit_faculty_path(faculty) , class: 'btn btn-info btn-sm' %>
+                <%= link_to "Eliminar", faculty, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "¿Estas seguro?" } %>
+              <!--% end %-->
+            </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<!-- Estos son los listados -->
+<div class="col-md-3">
+  <% if ((user_signed_in?) && (current_user.puntos)) %>
+    <%= link_to "Crear facultad", new_faculty_path, class: 'btn btn-primary' %>
+    </br>
+    </br>
+  <% end %>
+
+  <div class="panel">
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'Más-respuestas')">Más respuestas</button>
+      <button class="tablinks" onclick="openTab(event, 'Menos-respuestas')">Menos respuestas</button>
+    </div>
+
+    <div id="Más-respuestas" class="tabcontent">
+      <h4> Facultades con más respuestas </h4>
+      <ol>
+        <% @faculties.lista1.each do |faculty| %>
+              <li><%= link_to faculty.facultad_y_universidad, faculty_path(faculty) %></li>
+        <% end %>
+      </ol>
+    </div>
+
+    <div id="Menos-respuestas" class="tabcontent">
+      <h4> Facultades con menos respuestas </h4>
+      <ol>
+        <% @faculties.lista2.each do |faculty| %>
+              <li><%= link_to faculty.facultad_y_universidad, faculty_path(faculty) %></li>
+        <% end %>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+
+
