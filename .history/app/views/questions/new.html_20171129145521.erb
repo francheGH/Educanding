@@ -30,6 +30,13 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.text_area :tag_list, :id=>"tg", class: 'form-control', label: 'Etiquetas',placeholder: "Ingrese las etiquetas" %>
+        </div>
+      </div>
+      </br>
+
       <div class="form-group input-group">
         <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
                               {},

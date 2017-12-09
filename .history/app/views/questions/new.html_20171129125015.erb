@@ -30,16 +30,37 @@
         </div>
       </div>
 
-      <div class="form-group input-group">
-        <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
-                              {},
-                              {:multiple => true}) %>
-                              </div>
-
       <%= q.submit "Crear pregunta", class: 'btn btn-primary' %>
       <% end %>
 
-      
+      <div class="form-group input-group">
+        
+        <select class="js-example-basic-multiple form-control" name="tag_list" multiple="multiple">
+          <%= Tag.all.each do |tag| %>
+            <option value= <%= tag.id %> > <%= tag.nombre %> </option>
+          <% end %>
+          <span class="tags_list" </span>
+        </select>
+
+          <script>
+                $('#stringify').on('click',function(){
+
+                var result = { };
+                $('#feeling :selected').each(function() { var o = $(this); result[o.text()]=o.val() });
+
+                $('#output').text(JSON.stringify(result));
+
+                });
+          </script>
+
+          <button class='btn btn-secondary' id="stringify">
+              To JSON.
+          </button>
+              <div class='output well'>
+              <span id='output'> </span>
+          </div>
+      </div>
+    
   </div>
 </div>
 

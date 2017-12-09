@@ -44,26 +44,21 @@ function openTab(evt, TabName) {
 }
 
 $(document).ready(function() {
-  $('.tags_select').select2({
+  $('.js-example-basic-multiple').select2({
     placeholder: 'Select an option'
   });
 });
 
-$("#select2_dropdown option:selected").each(function(){
-  
-    var option = $(this);
-  
-    var label = option.text();
-    var value = option.value();
-  
-  });
-  
-  $('#stringify').on('click',function(){
-    
-    var result = { };
-    $('#feeling :selected').each(function() { var o = $(this); result[o.text()]=o.val() });
-    
-    $('#output').text(JSON.stringify(result));
-  
-  });
+$(document).change(function() {
+  //var ids = $(test).val(); // works
+  //var selections = $(test).filter('option:selected').text(); // doesn't work
+  //var ids = $(test).select2('data').id; // doesn't work (returns 'undefined')
+  //var selections = $(test).select2('data').text; // doesn't work (returns 'undefined')
+  //var selections = $(test).select2('data');
+  var selections = ( JSON.stringify($(test).select2('data')) );
+  //console.log('Selected IDs: ' + ids);
+  console.log('Selected options: ' + selections);
+  //$('#selectedIDs').text(ids);
+  $('#selectedText').text(selections);
+});
 

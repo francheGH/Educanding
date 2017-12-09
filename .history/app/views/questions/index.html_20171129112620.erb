@@ -34,11 +34,13 @@
             <%=link_to "Leer mas",question%>
           <%end%>
         </p>
-        <div class="tags">
-          Etiquetas: <%=raw tag_links(question.tag_list)%>
-          <%#=raw @question.tag_list %>
-          <%#= raw @question.tags.map(&:nombre).map { |t| link_to t, tag_path(t) }.join(', ') %>
-        </div>
+      </div>
+
+      <div class="tags">
+        Tags: <p><%=raw tag_links(question.tag_list)%>
+        <%#=raw @question.tag_list %>
+        <%#= raw @question.tags.map(&:nombre).map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </p>
       </div>
 
       <!-- Y luego el footer con los botones -->

@@ -30,16 +30,25 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.text_area :tag_list, class: 'form-control', label: 'Etiquetas',placeholder: "Ingrese las etiquetas" %>
+        </div>
+      </div>
+      </br>
+
       <div class="form-group input-group">
-        <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
-                              {},
-                              {:multiple => true}) %>
-                              </div>
+        <select class="js-example-basic-multiple form-control" name="tags[]" multiple="multiple">
+          <%= Tag.all.each do |tag| %>
+            <option value= <%= tag.id %> > <%= tag.nombre %> </option>
+          <% end %>
+        </select>
+      </div>
 
-      <%= q.submit "Crear pregunta", class: 'btn btn-primary' %>
-      <% end %>
-
+      <%= q.tag_list = tags%>
       
+      <%= q.submit "Crear pregunta", class: 'btn btn-primary' %>
+    <% end %>
   </div>
 </div>
 

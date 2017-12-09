@@ -44,26 +44,7 @@ function openTab(evt, TabName) {
 }
 
 $(document).ready(function() {
-  $('.tags_select').select2({
+  $('.js-example-basic-multiple').select2({
     placeholder: 'Select an option'
   });
 });
-
-$("#select2_dropdown option:selected").each(function(){
-  
-    var option = $(this);
-  
-    var label = option.text();
-    var value = option.value();
-  
-  });
-  
-  $('#stringify').on('click',function(){
-    
-    var result = { };
-    $('#feeling :selected').each(function() { var o = $(this); result[o.text()]=o.val() });
-    
-    $('#output').text(JSON.stringify(result));
-  
-  });
-

@@ -15,7 +15,10 @@ class Question < ApplicationRecord
   def self.tagged_with(name)
     Tag.find_by!(nombre: name).questions
   end
-  
+  def taggers=(tags)
+    tags.inspect 
+  end
+  abort("Message goes here")  
   def tag_list
     self.tags.map(&:nombre).join(', ')
   end

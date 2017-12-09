@@ -1,15 +1,12 @@
 class QuestionsController < ApplicationController
   def index
-    if ((user_signed_in?) && (!current_user.faculty.nil?))
+    if user_signed_in?
         @questions = Question.where(:faculty_id => current_user.faculty.id)
+    elsif params[:tag]
+        @questions = Question.tagged_with(params[:tag])
     else
         @questions = Question.all
     end
-
-    if params[:tag]
-      @questions = Question.tagged_with(params[:tag])
-    end
-
   end
 
   def show
@@ -52,6 +49,6 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(:faculty_id, :pregunta, :detalles, :tag_list, tag_ids: [])
+    params.require(:question).permit(:faculty_id, :pregunta, :detalles, :tag_list)
   end
 end
