@@ -4,7 +4,7 @@ class FacultiesController < ApplicationController
   end
 
   def show
-    x
+    @faculty = Faculty.find(params[:id])
     @faculty.update_attribute(:visitas, @faculty.visitas + 1)
   end
 
@@ -37,7 +37,6 @@ class FacultiesController < ApplicationController
   def destroy
     @faculty = Faculty.find(params[:id])
     if @faculty.destroy
-      flash.now
       render :index, notice: "Facultad borrada."
     else
       render :index, alert: "Hubo un error al borrar la facultad."

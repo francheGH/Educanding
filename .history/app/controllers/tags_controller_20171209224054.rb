@@ -6,9 +6,8 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
-      @tags = Tag.all
-      flash.now[:notice] = "Etiqueta creada."
-      render :index
+      #@tags = Tag.all
+      redirect_to @tag, notice: "Etiqueta creada."
     else
       render :new, alert: "Hubo un error al crear la Etiqueta."
     end
@@ -22,7 +21,7 @@ class TagsController < ApplicationController
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
       @tags = Tag.all
-      flash.now[:notice] = "Etiqueta modificada."
+      flash[:notice] = "Etiqueta modificada."
       render :index
     else
       render :edit, alert: "Hubo un error al modificar la etiqueta."
@@ -33,7 +32,7 @@ class TagsController < ApplicationController
     @tag = Tag.find(params[:id])
     if @tag.destroy
       @tags = Tag.all
-      flash.now[:notice] = "Etiqueta borrada."
+      flash[:notice] = "Etiqueta borrada."
       render :index
     else
       render :index, alert: "Hubo un error al borrar la etiqueta."
