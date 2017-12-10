@@ -28,13 +28,20 @@
         <div class="pull-left" style="margin-bottom:10px">
           <%= link_to "Responder", new_answer_path(:question_id => @question.id), class: 'btn btn-primary' %>
            <%= link_to "Comentar", new_qcomment_path(:question_id => @question.id), class: 'btn btn-primary' %>
-
+           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseComentariosPregunta" aria-expanded="false" aria-controls="collapseComentariosPregunta">
+              Comentarios
+           </button>
           <% if current_user == @question.user %>
             <% if current_user.puntos > 999 %>
               <%= link_to "Editar", edit_question_path(@question), class: 'btn btn-primary' %>
             <% end %>
             <%= link_to "Eliminar", @question, method: :delete, class: 'btn btn-danger btn-sm' %>
           <% end %>
+        </div>
+        <div class="collapse" id="collapseComentariosPregunta">
+          <div class="card card-block">
+    
+          </div>
         </div>
 
         <% if current_user.puntos > 14 %>
@@ -164,8 +171,14 @@
             <% if current_user.puntos > 999 %>
               <%= link_to "Editar", edit_answer_path(answer), class: 'btn btn-primary' %>
             <%end%>
-            <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger btn-sm' %>
+            <%= link_to "Eliminar", answer, method: :delete, class: 'btn btn-danger btn-sm' %>
           <%end%>
+        </div>
+
+        <div class="collapse" id="collapseComentariosRespuesta">
+          <div class="card card-block">
+    
+          </div>
         </div>
 
         <% if current_user.puntos > 14 %>

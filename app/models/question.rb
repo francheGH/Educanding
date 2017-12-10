@@ -1,4 +1,5 @@
 class Question < ApplicationRecord
+  
   scope :crono, -> {
     order('created_at ASC') #Preguntas en orden cronológico
   }
@@ -25,7 +26,7 @@ class Question < ApplicationRecord
       Tag.where(nombre: nombre.strip).first_or_create!
     end
   end
-
+  
   belongs_to :user
   belongs_to :faculty
   has_many :answers, dependent: :destroy
@@ -33,4 +34,6 @@ class Question < ApplicationRecord
   has_many :qcomments, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  validates :detalles,presence:true
+  validates :pregunta,presence:true,uniqueness:true
 end

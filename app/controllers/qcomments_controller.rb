@@ -18,8 +18,11 @@ class QcommentsController < ApplicationController
   end
 
   def destroy
-  end
 
+    Qcomment.find(params[:id]).destroy
+    redirect_to $q, notice: "Comentario eliminado."
+    
+  end
   def edit
         @qcomments = Qcomment.find(params[:id])
   end

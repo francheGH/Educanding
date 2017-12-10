@@ -19,7 +19,7 @@ class AnswersController < ApplicationController
     @answer.question_id = $q.id
 
     if @answer.save
-      redirect_to $q, notice: "Pregunta realizada."
+      redirect_to $q, notice: "Respuesta realizada."
       $q.update_attribute(:cant_respuestas, $q.cant_respuestas + 1)
     else
       render :new
@@ -36,6 +36,11 @@ class AnswersController < ApplicationController
   end
 
   def destroy
+
+    Answer.find(params[:id]).destroy
+    
+    redirect_to $q, notice: "Respuesta eliminada"
+    
   end
 
   private

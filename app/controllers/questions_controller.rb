@@ -25,7 +25,10 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    redirect_to questions_path
+
+    Question.find(params[:id]).destroy
+    redirect_to questions_path, notice: "Pregunta eliminada."
+
   end
 
   def update
@@ -38,12 +41,12 @@ class QuestionsController < ApplicationController
   end
   
   def create
-    @question = Question.new(question_params)
-    @question.user_id = current_user.id
-    @question.faculty_id = current_user.faculty.id
-    
+      @question = Question.new(question_params)
+      @question.user_id = current_user.id
+      @question.faculty_id = current_user.faculty.id
+
     if @question.save
-      redirect_to @question, notice: "Pregunta realizada."
+        redirect_to @question, notice: "Pregunta realizada."
     else
       render :new
     end
