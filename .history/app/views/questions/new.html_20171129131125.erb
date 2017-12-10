@@ -1,0 +1,86 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Crear una pregunta </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @question do |q| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :pregunta %>
+          <%= q.text_area :pregunta, class: 'form-control', label: 'Pregunta', placeholder: 'Ingrese la pregunta' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :detalles %>
+          <%= q.text_area :detalles, class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+        <%= q.label :etiquetas %>
+        </div>
+      </div>
+
+          <div class="row">
+        <div class="col-md-6">
+          <%= @question.text_area :tag_list, :id=>"tg", class: 'form-control', label: 'Etiquetas',placeholder: "Ingrese las etiquetas" %>
+        </div>
+      </div>
+      </br>
+
+      <%= q.submit "Crear pregunta", class: 'btn btn-primary' %>
+      <% end %>
+
+      <div class="form-group input-group">
+        
+        <select class="js-example-basic-multiple form-control" id="tagger" multiple="multiple">
+          <%= Tag.all.each do |tag| %>
+            <option value= <%= tag.id %> > <%= tag.nombre %> </option>
+          <% end %>
+        </select>
+
+          
+
+          <button class='btn btn-secondary' id="stringify">
+              To JSON.
+          </button>
+              <div class='output well'>
+              <span id='output'> </span>
+          </div>
+
+          <script>
+                $("#js-example-basic-multiple_dropdown option:selected").each(function(){
+                    var option = $(this);
+                    var label = option.text();
+                    var value = option.value();
+                });
+
+                $('#stringify').on('click',function(){
+
+                var result = { };
+                $('#tagger :selected').each(function() { var o = $(this); result[o.text()]=o.val() });
+
+                $('#output').text(JSON.stringify(result));
+                //$('#output').text('bitch');
+
+                  $(document).ready(function(){
+                        $("#tg").val(result);
+                  });
+
+                });
+          </script>
+
+      </div>
+  
+  </div>
+</div>
+

@@ -1,0 +1,46 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Crear una facultad </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @faculty do |f| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :facultad %>
+          <%= f.text_area :facultad, class: 'form-control', label: 'Facultad', placeholder: 'Ingrese la facultad' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :universidad %>
+          <%= f.text_area :universidad, class: 'form-control', label: 'Universidad', placeholder: 'Ingrese la universidad' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :provincia %>
+          <%= f.text_area :provincia, class: 'form-control', label: 'Provincia', placeholder: 'Ingrese la provincia' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :ciudad %>
+          <%= f.text_area :ciudad, class: 'form-control', label: 'Ciudad', placeholder: 'Ingrese la ciudad' %>
+        </div>
+      </div>
+      </br>
+
+      <%= f.submit "Crear facultad", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

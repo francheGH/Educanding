@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129140647) do
+ActiveRecord::Schema.define(version: 20171208211103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 20171129140647) do
     t.index ["user_id"], name: "index_avotes_on_user_id"
   end
 
+  create_table "comment_answers", force: :cascade do |t|
+    t.string "text"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comment_questions", force: :cascade do |t|
+    t.string "text"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "faculties", force: :cascade do |t|
     t.string "universidad"
     t.string "facultad"
@@ -66,6 +80,8 @@ ActiveRecord::Schema.define(version: 20171129140647) do
     t.string "ciudad"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "visitas", default: 0
+    t.integer "cant_preguntas", default: 0
   end
 
   create_table "qcomments", force: :cascade do |t|

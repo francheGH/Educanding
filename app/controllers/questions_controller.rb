@@ -3,12 +3,21 @@ class QuestionsController < ApplicationController
     if ((user_signed_in?) && (!current_user.faculty.nil?))
       @questions = Question.where(:faculty_id => current_user.faculty.id)
     else
-        @questions = Question.all
+      @questions = Question.all
     end
 
     if params[:tag]
       @questions = Question.tagged_with(params[:tag]).where(:faculty_id => current_user.faculty.id)
     end
+
+    if params[:spregunta] || params[:sdetalles] || params[:sfacultad]
+      @questions = Question.search(params[:spregunta], params[:sdetalles], params[:sfacultad])
+    end
+
+    if params[:tag]
+      @questions = Question.tagged_with(params[:tag])
+    end
+
   end
 
   def show
@@ -46,7 +55,12 @@ class QuestionsController < ApplicationController
       @question.faculty_id = current_user.faculty.id
 
     if @question.save
+
         redirect_to @question, notice: "Pregunta realizada."
+
+      @question.faculty.update_attribute(:cant_preguntas, @question.faculty.cant_preguntas + 1)
+      redirect_to @question, notice: "Pregunta realizada."
+
     else
       render :new
     end
@@ -54,6 +68,6 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(:faculty_id, :pregunta, :detalles, :tag_list)
+    params.require(:question).permit(:faculty_id, :pregunta, :detalles, :tag_list, tag_ids: [])
   end
 end

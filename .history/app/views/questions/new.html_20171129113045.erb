@@ -1,0 +1,47 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Crear una pregunta </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @question do |q| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :pregunta %>
+          <%= q.text_area :pregunta, class: 'form-control', label: 'Pregunta', placeholder: 'Ingrese la pregunta' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= q.label :detalles %>
+          <%= q.text_area :detalles, class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
+        </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-md-6">
+        <%= q.label :etiquetas %>
+        </div>
+      </div>
+
+      <div class="form-group input-group">
+        <select class="js-example-basic-multiple form-control" name="tag_list" multiple="multiple">
+          <%= Tag.all.each do |tag| %>
+            <option value= <%= tag.id %> > <%= tag.nombre %> </option>
+          <% end %>
+        </select>
+      </div>
+
+    
+      
+      <%= q.submit "Crear pregunta", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+
