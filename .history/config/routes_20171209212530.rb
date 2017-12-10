@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'tags/index'
+
+  get 'tags/new'
+
+  get 'tags/create'
+
+  get 'tags/edit'
+
+  get 'tags/update'
+
+  get 'tags/delete'
+
+  get 'tags/destroy'
+
   #Ruta raíz
   root :to => 'questions#index'
   
@@ -26,8 +40,8 @@ Rails.application.routes.draw do
   resources :faculties
 
   #Rutas de etiquetas
-  resources :tags #, except: 'question#index', as: :tags
-  #get 'tags/:tag', to: 'questions#index', as: :tag
+  resources :tags
+  get 'tags/:tag', only: 'questions#index', as: :tag
   
   
 end
