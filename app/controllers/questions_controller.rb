@@ -35,8 +35,8 @@ class QuestionsController < ApplicationController
 
   def destroy
 
-    Question.find(params[:id]).destroy
-    redirect_to questions_path, notice: "Pregunta eliminada."
+    @question = Question.find(params[:id]).destroy
+    redirect_to @question, notice: "Pregunta eliminada"
 
   end
 

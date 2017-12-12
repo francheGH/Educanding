@@ -21,9 +21,11 @@ class AcommentsController < ApplicationController
 
   def destroy
 
+
     Acomment.find(params[:id]).destroy
     redirect_to $q, notice: "Comentario eliminado."
     
+
   end
 
   def edit
