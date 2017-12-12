@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   root :to => 'questions#index'
   
   #Rutas de devise (usuarios)
-  #devise_for :users
+  devise_for :users
 
-  devise_for :users, :path_prefix => 'd'
+  #devise_for :users, :path_prefix => 'd'
   resources :users, :only =>[:show]
 
   match '/users/:id',     to: 'users#show',       via: 'get'

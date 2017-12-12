@@ -1,0 +1,62 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2><%= @user.nombre %></h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for(user, as: user_name, url: user_path(user_name), html: { method: :put }) do |f| %>
+      <% if devise_error_messages? %>
+        <div class="alert alert-danger devise-errors">
+          <%= devise_error_messages! %>
+        </div>
+      <% end %>
+      
+      <!-- Nombre -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Nombre </label>
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i> <%= f.label 'Nombre' %>
+        </span>
+        <%= f.text_field :nombre, class: 'form-control', :readonly => true %>
+      </div>
+
+      <!-- Apellido -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Apellido </label>
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i> <%= f.label 'Apellido' %>
+        </span>
+        <%= f.text_field :apellido, class: 'form-control', :readonly => true %>
+      </div>
+
+      <!-- Sexo -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Sexo </label>
+        <span class="input-group-addon">
+          <i class="fa fa-venus-mars"></i> <label for="user_sexo">Sexo</label>
+        </span>
+        <%= f.select :sexo, [["Seleccionar su opcion", ""], ["Hombre", "Hombre"], ["Mujer", "Mujer"], ["Otro", "Otro"]], {}, {class: 'form-control'} %>
+      </div>
+
+      <!-- Facultad -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Facultad </label>
+        <span class="input-group-addon">
+          <i class="fa fa-institution"></i> <label for="user_faculty_id">Facultad</label>
+        </span>
+        <%= f.collection_select(:faculty_id, Faculty.all.order('facultad ASC'), :id, :facultad_y_universidad, { include_blank: true }, {class: 'form-control'}) %>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Email </label>
+        <span class="input-group-addon">
+          <i class="fa fa-envelope"></i> <%= f.label 'Email' %>
+        </span>
+        <%= f.email_field :email, autofocus: true, :readonly => true, class: 'form-control' %>
+      </div>
+
+ <% end %>
+  </div>

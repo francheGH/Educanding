@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-sm-9 text-left">
           <h2><%=@question.pregunta%></h2>
-          <p><em> Creada por <%= link_to(@question.user.fullname, user_path(@question.user)) %></em></p>
+          <p> Creada por <%= @question.user.nombre %> <%= @question.user.apellido %></p>
         </div>
         <div class="col-sm-3 text-right">
           <h4><small><em><%= @question.created_at.strftime("%d/%m/%Y") %></em></small></h4>
@@ -87,7 +87,7 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-sm-9 text-left">
-            <p><em> Creada por <%= link_to(qcomment.user.fullname, user_path(qcomment.user)) %></em></p>
+            <p> Creada por <%= qcomment.user.nombre %> <%= qcomment.user.apellido %></p>
           </div>
           <div class="col-sm-3 text-right">
             <h4><small><em><%=qcomment.created_at.strftime("%d/%m/%Y")%> <%=qcomment.created_at.strftime("%H:%M:%S")%></em></small></h4>
@@ -155,7 +155,7 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-sm-9 text-left">
-        <p><em> Creada por <%= link_to(answer.user.fullname, user_path(answer.user)) %></em></p>
+          <p> Creada por <%= answer.user.nombre %> <%= answer.user.apellido %></p>
         </div>
         <div class="col-sm-3 text-right">
           <h4><small><em><%= answer.created_at.strftime("%d/%m/%Y")%> <%=answer.created_at.strftime("%H:%M:%S") %></em></small></h4>
@@ -227,7 +227,7 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-sm-9 text-left">
-          <p><em> Creada por <%= link_to(acomment.user.fullname, user_path(acomment.user)) %></em></p>
+          <p> Creada por <%= acomment.user.nombre %> <%= acomment.user.apellido %></p>
         </div>
         <div class="col-sm-3 text-right">
           <h4><small><em><%=acomment.created_at.strftime("%d/%m/%Y")%> <%=acomment.created_at.strftime("%H:%M:%S")%></em></small></h4>

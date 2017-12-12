@@ -227,7 +227,7 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-sm-9 text-left">
-          <p><em> Creada por <%= link_to(acomment.user.fullname, user_path(acomment.user)) %></em></p>
+          <p> Creada por <%= acomment.user.nombre %> <%= acomment.user.apellido %></p>
         </div>
         <div class="col-sm-3 text-right">
           <h4><small><em><%=acomment.created_at.strftime("%d/%m/%Y")%> <%=acomment.created_at.strftime("%H:%M:%S")%></em></small></h4>

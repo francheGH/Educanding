@@ -17,8 +17,13 @@
         <div class="row">
           <div class="col-sm-9 text-left">
             <h3><%=question.pregunta%></h3>
-            <p><em> Creada por <%= link_to(question.user.fullname, user_path(question.user)) %></em></p>
-					</div>
+            <p> Creada por <%= question.user.nombre %> <%= question.user.apellido %></p>
+						<p>
+						<strong>
+								<%= link_to("question.user.nombre  question.user.apellido", user_path(question.user)) %>
+						</strong>
+						</p>
+          </div>
           <div class="col-sm-3 text-right">
             <h4><small><em><%= question.created_at.strftime("%d/%m/%Y") %></em></small></h4>
             <h4><small><em><%= question.faculty.facultad_y_universidad %></em></small></h4>

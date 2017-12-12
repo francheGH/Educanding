@@ -11,8 +11,7 @@ class User < ApplicationRecord
   validates :puntos, numericality: { greater_than: 0 }
 
   def fullname
-    "#{nombre.capitalize} #{apellido.capitalize}"    
-    #self.full_name = [nombre, apellido].join(' ')
+    "#{first_name} #{last_name}"
   end
-
+  
 end
