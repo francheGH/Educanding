@@ -168,7 +168,7 @@
             <% if current_user.puntos > 999 %>
               <%= link_to "Editar", edit_answer_path(answer), class: 'btn btn-primary' %>
             <%end%>
-            <%= link_to "Eliminar", @answer, method: :delete, class: 'btn btn-danger btn-sm' %>
+            <%= link_to "Eliminar", answer, method: :delete, class: 'btn btn-danger btn-sm' %>
           <%end%>
         </div>
 
