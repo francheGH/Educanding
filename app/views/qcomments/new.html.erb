@@ -1,7 +1,7 @@
 <div class="panel-center col-md-8">
   <div class="panel-heading">
     <div class="text-left">
-      <h3> Comentar la pregunta <%= @q.pregunta %> </h3>
+      <h3> Comentar la pregunta <%= $q.pregunta %> </h3>
     </div>
   </div>
 
@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-6">
           <%= qc.label :texto %>
-          <%= qc.text_area :texto, class: 'form-control', label: 'Comentario', placeholder: 'Ingrese el comentario' %>
+          <%= qc.text_area :texto, required: true, class: 'form-control', label: 'Comentario', placeholder: 'Ingrese el comentario' %>
         </div>
       </div>
       </br>

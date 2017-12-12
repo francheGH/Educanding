@@ -1,7 +1,7 @@
 <div class="panel-center col-md-8">
   <div class="panel-heading">
     <div class="text-left">
-      <h3> Responder a la pregunta <%= @q.pregunta %> </h3>
+      <h3> Responder a la pregunta <%= $q.pregunta %> </h3>
     </div>
   </div>
 
@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-6">
           <%= a.label :respuesta %>
-          <%= a.text_area :respuesta, class: 'form-control', label: 'Respuesta', placeholder: 'Ingrese la respuesta' %>
+          <%= a.text_area :respuesta, required: true, class: 'form-control', label: 'Respuesta', placeholder: 'Ingrese la respuesta' %>
         </div>
       </div>
       </br>
