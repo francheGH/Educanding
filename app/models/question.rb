@@ -33,4 +33,6 @@ class Question < ApplicationRecord
   has_many :qcomments, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  validates :pregunta,presence:true,uniqueness:true
+  validates :detalles,presence:true,uniqueness:true
 end
