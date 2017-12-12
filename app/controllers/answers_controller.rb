@@ -37,10 +37,9 @@ class AnswersController < ApplicationController
 
   def destroy
 
-    Answer.find(params[:id]).destroy
-    
+    @answer = Answer.find(params[:id]).destroy
     redirect_to $q, notice: "Respuesta eliminada"
-    
+
   end
 
   private
