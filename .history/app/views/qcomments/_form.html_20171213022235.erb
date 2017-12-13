@@ -1,0 +1,14 @@
+  <div class="panel-body">
+    <%= form_for @qcomments do |qc| %>
+    
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <%= qc.label :texto %>
+          <%= qc.text_area :texto, required: true, class: 'form-control', label: 'Comentario', placeholder: 'Ingrese el comentario' %>
+        </div>
+      </div>
+      </br>
+          
+      <%= qc.submit msgsub, class: 'btn btn-primary' %>
+    <% end %>
+  </div>

@@ -1,0 +1,22 @@
+  <div class="panel-body">
+    <%= form_for @tag do |f| %>
+      <% if @tag.errors.any? %>
+        <div class="alert alert-danger devise-errors">
+            <% @tag.errors.full_messages.each do |error_message| %>
+            <%= error_message %> <br />
+            <% end %>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <%= f.label :nombre %>
+          <%= f.text_area :nombre, class: 'form-control', label: 'Etiqueta', required:true, placeholder: 'Ingrese la etiqueta' %>
+        </div>
+      </div>
+      </br>
+      </br>
+
+      <%= f.submit msgsub, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
