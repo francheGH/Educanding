@@ -1,62 +1,65 @@
 <!-- Estas son las preguntas-->
 <div class="col-md-8">
-  
-  <!-- <div class="tags-cloud glassy-bg">
-    <h4>Tags Cloud</h4>
-    <% tag_cloud Tag.counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
-      <%= link_to tag.nombre, tag_path(tag.nombre), class: css_class %>
-    <% end %>
-  </div> -->
 
-  <!-- Por cada pregunta se hace un cuadrado -->
-  <%@questions.crono.each do |question|%>
+  <% if @questions.empty? %>
     <div class="panel">
+      <% if @search %>
+        <h2 class="panel-heading text-center"> Esta búsqueda no dio resultados </h2>
+      <% else %>
+        <h2 class="panel-heading text-center"> Esta facultad no tiene preguntas </h2>
+      <% end %>
+    </div>
+  <%else%>
+    <!-- Por cada pregunta se hace un cuadrado -->
+    <%@questions.crono.each do |question|%>
+      <div class="panel">
 
-      <!-- Se tiene la parte de arriba del cuadrado -->
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-sm-9 text-left">
-            <h3><%=question.pregunta%></h3>
-            <p><em> Creada por <%= link_to(question.user.fullname, user_path(question.user)) %></em></p>
-					</div>
-          <div class="col-sm-3 text-right">
-            <h4><small><em><%= question.created_at.strftime("%d/%m/%Y") %></em></small></h4>
-            <h4><small><em><%= question.faculty.facultad_y_universidad %></em></small></h4>
+        <!-- Se tiene la parte de arriba del cuadrado -->
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-9 text-left">
+              <h3><%=question.pregunta%></h3>
+              <p><em> Creada por <%= link_to(question.user.fullname, user_path(question.user)) %></em></p>
+            </div>
+            <div class="col-sm-3 text-right">
+              <h4><small><em><%= question.created_at.strftime("%d/%m/%Y") %></em></small></h4>
+              <h4><small><em><%= question.faculty.facultad_y_universidad %></em></small></h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Se ponen los detalles de las preguntas en el centro-->
+        <div class="panel-body">
+          <p>
+            <%=truncate(question.detalles,length: 300)%>
+            <% if question.detalles.length > 300 %>
+              <%=link_to "Leer mas",question%>
+            <%end%>
+          </p>
+          <div class="tags">
+            Etiquetas: <%=raw tag_links(question.tag_list)%>
+          </div>
+        </div>
+
+        <!-- Y luego el footer con los botones -->
+        <div class="panel-footer">
+          <div class="center">
+            <%= link_to "Mostrar", question, class: 'btn btn-primary btn-sm' %>
+            <% if ((user_signed_in?) && (current_user == question.user)) %>
+              <%= link_to "Editar", edit_question_path(question) , class: 'btn btn-info btn-sm' %>
+              <%= link_to "Eliminar",question,method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "¿Estas seguro?" } %>
+            <% end %>
           </div>
         </div>
       </div>
-
-      <!-- Se ponen los detalles de las preguntas en el centro-->
-      <div class="panel-body">
-        <p>
-          <%=truncate(question.detalles,length: 300)%>
-          <% if question.detalles.length > 300 %>
-            <%=link_to "Leer mas",question%>
-          <%end%>
-        </p>
-        <div class="tags">
-          Etiquetas: <%=raw tag_links(question.tag_list)%>
-        </div>
-      </div>
-
-      <!-- Y luego el footer con los botones -->
-      <div class="panel-footer">
-        <div class="center">
-          <%= link_to "Mostrar", question, class: 'btn btn-primary btn-sm' %>
-          <% if current_user == question.user %>
-            <%= link_to "Editar", edit_question_path(question) , class: 'btn btn-info btn-sm' %>
-            <%= link_to "Eliminar",question,method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "¿Estas seguro?" } %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%end%>
   <%end%>
 </div>
 
 <!-- Estos son los listados -->
 <div class="col-md-4">
 
-  <% if user_signed_in? %>
+  <% if ((user_signed_in?) && ((current_user.puntos > (Permission.find(1).puntos)-1))) %>
     <%= link_to "Crear pregunta", new_question_path, class: 'btn btn-primary' %>
     </br>
     </br>
@@ -80,6 +83,9 @@
           <% else %>
             <%= select_tag :sfacultad, options_from_collection_for_select(Faculty.all.order('facultad ASC'), "id", :facultad_y_universidad), include_blank: "Seleccione una facultad",class: "form-control" %>
           <% end %>
+        </div>
+        <div class="form-group">
+          <%= select_tag :stag, options_from_collection_for_select(Tag.all.order('nombre ASC'), "id", :nombre), include_blank: "Seleccione un tag", class: "form-control" %>
         </div>
       </div>
       <div class="panel-footer">

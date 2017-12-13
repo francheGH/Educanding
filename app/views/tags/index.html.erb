@@ -33,7 +33,7 @@
 
 <!-- Estos son los listados -->
 <div class="col-md-3">
-  <% if ((user_signed_in?) && (current_user.puntos)) %>
+  <% if ((user_signed_in?) && (current_user.puntos > (Permission.find(5).puntos)-1)) %>
     <%= link_to "Crear Etiqueta", new_tag_path, class: 'btn btn-primary' %>
     </br>
     </br>

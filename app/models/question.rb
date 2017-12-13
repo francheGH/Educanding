@@ -13,6 +13,22 @@ class Question < ApplicationRecord
     order('visitas ASC') #Preguntas menos visitadas
   }
   
+  scope :search, -> (spregunta, sdetalles, sfacultad, stag) {
+    if( sfacultad != "" )
+      if( stag != "" )
+        where("pregunta LIKE ?", "%#{spregunta}%").where("detalles LIKE ?", "%#{sdetalles}%").where(faculty_id: sfacultad).joins(:tags).where(tags: { id: stag })
+      else
+        where("pregunta LIKE ?", "%#{spregunta}%").where("detalles LIKE ?", "%#{sdetalles}%").where(faculty_id: sfacultad)
+      end
+    else
+      if( stag != "" )
+        where("pregunta LIKE ?", "%#{spregunta}%").where("detalles LIKE ?", "%#{sdetalles}%").joins(:tags).where(tags: { id: stag })
+      else
+        where("pregunta LIKE ?", "%#{spregunta}%").where("detalles LIKE ?", "%#{sdetalles}%")
+      end
+    end
+  }
+
   def self.tagged_with(name)
     Tag.find_by!(nombre: name).questions
   end

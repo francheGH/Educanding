@@ -1,0 +1,38 @@
+<% if ((user_signed_in?) && (current_user.admin?)) %>
+  <div class="panel-center col-md-5">
+    <div class="panel-heading">
+      <div class="text-left">
+        <h2> Editar permiso: <%= @permission.nombre %> </h2>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <%= form_for @permission do |p| %>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= p.label :nombre %>
+            <%= p.text_area :nombre, required: true, class: 'form-control', label: 'Nombre', placeholder: 'Ingrese el nombre del permiso' %>
+          </div>
+        </div>
+        </br>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= p.label :puntos %>
+            <%= p.number_field :puntos, required: true, in: 1..2147483647, class: 'form-control', label: 'Puntos', placeholder: 'Ingrese el puntaje' %>
+          </div>
+        </div>
+        </br>
+
+        <%= p.submit "Editar", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="panel-center col-md-6">
+    <div class="panel-heading">
+      <h2> Usted no tiene permiso para estar editar este permiso. </h2>
+    </div>
+  </div>
+<% end %>

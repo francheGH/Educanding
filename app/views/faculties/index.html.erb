@@ -13,17 +13,17 @@
       </tr>
       <% @faculties.alfab.each do |faculty| %>
         <tr>
-            <td> <%= truncate(faculty.facultad, length: 20)%> </td>
-            <td> <%= truncate(faculty.universidad, length: 20)%> </td>
-            <td> <%= truncate(faculty.provincia, length: 20)%> </td>
-            <td> <%= truncate(faculty.ciudad, length: 20)%> </td>
-            <td>
-              <%= link_to "Mostrar", faculty, class: 'btn btn-primary btn-sm' %>
-              <!--% if ¿¿puntaje de los usuarios y/o admin?? %-->
-                <%= link_to "Editar", edit_faculty_path(faculty) , class: 'btn btn-info btn-sm' %>
-                <%= link_to "Eliminar", faculty, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "¿Estas seguro?" } %>
-              <!--% end %-->
-            </td>
+          <td> <%= truncate(faculty.facultad, length: 20)%> </td>
+          <td> <%= truncate(faculty.universidad, length: 20)%> </td>
+          <td> <%= truncate(faculty.provincia, length: 20)%> </td>
+          <td> <%= truncate(faculty.ciudad, length: 20)%> </td>
+          <td>
+            <%= link_to "Mostrar", faculty, class: 'btn btn-primary btn-sm' %>
+            <% if ((user_signed_in?) && ((current_user.puntos > (Permission.find(6).puntos)-1))) %>
+              <%= link_to "Editar", edit_faculty_path(faculty) , class: 'btn btn-info btn-sm' %>
+              <%= link_to "Eliminar", faculty, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "¿Estas seguro?" } %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>
@@ -32,7 +32,7 @@
 
 <!-- Estos son los listados -->
 <div class="col-md-3">
-  <% if ((user_signed_in?) && (current_user.puntos)) %>
+  <% if ((user_signed_in?) && ((current_user.puntos > (Permission.find(6).puntos)-1))) %>
     <%= link_to "Crear facultad", new_faculty_path, class: 'btn btn-primary' %>
     </br>
     </br>

@@ -1,0 +1,25 @@
+<div class="panel col-md-8" style="  float: none; margin: 0 auto">
+  <div class="panel-header" style="margin-left:10px">
+    <h2> Permisos </h2>
+  </div>
+  <div class="table-responsive panel-body">
+    <table class="table">
+      <tr>
+        <th> Nombre </th>
+        <th> Puntos necesarios </th>
+        <% if current_user && current_user.admin? %>
+          <th> Acciones </th>
+        <% end %>
+      </tr>
+      <% @permissions.puntajes.each do |permission| %>
+        <tr>
+          <td> <%= truncate(permission.nombre, length: 50)%> </td>
+          <td> <%= permission.puntos %> </td>
+          <% if current_user && current_user.admin? %>
+            <td> <%= link_to "Editar", edit_permission_path(permission) , class: 'btn btn-info btn-sm' %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

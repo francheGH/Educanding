@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   #Rutas de etiquetas
   resources :tags #, except: 'question#index', as: :tags
   #get 'tags/:tag', to: 'questions#index', as: :tag
-  
+
+  #Rutas de permisos
+  resources :permissions
   
 end

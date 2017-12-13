@@ -12,10 +12,16 @@
           <%= @question.errors.messages %>
         </div>
       <% end %>
-<<<<<<< HEAD
-=======
 
->>>>>>> tmp
+      <% if ((user_signed_in?) && (current_user.faculty.nil?)) %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= q.label :facultad %>
+            <%= q.collection_select(:faculty_id, Faculty.all.order('facultad ASC'), :id, :facultad_y_universidad, { }, {class: 'form-control'}) %>
+          </div>
+        </div>
+        </br>
+      <% end %>
 
       <div class="row">
         <div class="col-md-6">
@@ -28,11 +34,7 @@
       <div class="row">
         <div class="col-md-6">
           <%= q.label :detalles %>
-<<<<<<< HEAD
-          <%= q.text_area :detalles, required: true, class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
-=======
           <%= q.text_area :detalles, required: true,class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
->>>>>>> tmp
         </div>
       </div>
       </br>
