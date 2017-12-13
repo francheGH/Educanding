@@ -26,8 +26,13 @@ class AnswersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get delete" do
-    get answers_delete_url
+  test "should get destroy" do
+    get answers_destroy_url
+    assert_response :success
+  end
+
+  test "should get better" do
+    get answers_better_url
     assert_response :success
   end
 

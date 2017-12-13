@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   resources :questions
   
   #Rutas de respuestas
-  resources :answers
-  
+  resources :answers do
+    get 'better'
+  end
+
   #Rutas de votos
   resources :avotes
   resources :qvotes

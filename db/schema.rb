@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213012625) do
+ActiveRecord::Schema.define(version: 20171213140937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171213012625) do
     t.datetime "updated_at", null: false
     t.integer "positive_votes", default: 0
     t.integer "negative_votes", default: 0
+    t.boolean "mejorRespuesta", default: false
   end
 
   create_table "avotes", force: :cascade do |t|
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(version: 20171213012625) do
     t.integer "cant_respuestas", default: 0
     t.integer "positive_votes", default: 0
     t.integer "negative_votes", default: 0
+    t.boolean "tieneMejorRespuesta", default: false
   end
 
   create_table "qvotes", force: :cascade do |t|

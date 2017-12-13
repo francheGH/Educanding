@@ -42,6 +42,24 @@ class AnswersController < ApplicationController
 
   end
 
+  def better
+    @answer = Answer.find(params[:answer_id])
+    @question = Question.find(@answer.question_id)
+    if (@question.tieneMejorRespuesta)
+      if (@answer.mejorRespuesta)
+        @answer.update_attribute(:mejorRespuesta, false)
+        @question.update_attribute(:tieneMejorRespuesta, false)
+        redirect_to @answer.question, notice: "Eliminada como mejor respuesta."
+      else
+        redirect_to @answer.question, notice: "Ya hay una mejor respuesta elegida."
+      end
+    else
+      @answer.update_attribute(:mejorRespuesta, true)
+      @question.update_attribute(:tieneMejorRespuesta, true)
+      redirect_to @answer.question, notice: "Mejor respuesta elejida."
+    end
+  end
+
   private
   def answer_params
     params.require(:answer).permit(:respuesta)
