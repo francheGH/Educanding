@@ -53,6 +53,7 @@ class QuestionsController < ApplicationController
       @question = Question.new(question_params)
       @question.user_id = current_user.id
       @question.faculty_id = current_user.faculty.id
+
     if @question.save
       @question.faculty.update_attribute(:cant_preguntas, @question.faculty.cant_preguntas + 1)
       redirect_to @question, notice: "Pregunta realizada."
@@ -60,7 +61,6 @@ class QuestionsController < ApplicationController
       render :new
     end
   end
- 
 
   private
   def question_params

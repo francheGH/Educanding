@@ -46,7 +46,7 @@
         <span class="input-group-addon">
           <i class="fa fa-institution"></i> <label for="user_faculty_id">Facultad</label>
         </span>
-        <%= f.text_field :facultad, class: 'form-control', value: @user.faculty.nil? ? nil : @user.faculty.facultad, :readonly => true %>
+        <%= f.text_field :facultad, class: 'form-control', value: @user.faculty.nil? ? nil : @user.faculty.universidad, :readonly => true %>
       </div>
 
       <!-- Email -->

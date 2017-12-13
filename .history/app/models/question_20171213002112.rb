@@ -30,7 +30,7 @@ class Question < ApplicationRecord
 
   
   def validate_tags
-    errors.add(:tags,"Debe seleccionar 5 etiquetas máximo") if tags.size > 5
+    errors.add("Debe seleccionar 5 etiquetas máximo") if tags.size > 5
   end
   
   belongs_to :user

@@ -5,40 +5,36 @@
     </div>
   </div>
 
-
-
   <div class="panel-body">
-    <%= form_for @question do |q| %> 
+    <%= form_for @question do |q| %>
       <% if @question.errors.any? %>
         <div class="alert alert-danger devise-errors">
-            <% @question.errors.full_messages.each do |error_message| %>
-            <%= error_message %> <br />
-            <% end %>
+          <%= @question.errors.messages %>
         </div>
       <% end %>
 
       <div class="row">
-        <div class="col-xs-12 form-group">
+        <div class="col-md-6">
           <%= q.label :pregunta %>
           <%= q.text_area :pregunta, required: true, class: 'form-control', label: 'Pregunta', placeholder: 'Ingrese la pregunta' %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 form-group">
-          <%= q.label :detalles %>
-          <%= q.text_area :detalles, required: true, class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
         </div>
       </div>
       </br>
 
       <div class="row">
         <div class="col-xs-12 form-group">
-        
-          <%= q.label :etiquetas %>
-          <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
-                              {}, 
-                              {:multiple => true, :required => true, :class => "multiselect form-control"}) %>
+          <%= q.label :detalles %>
+          <%= q.text_area :detalles, required: true,class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
         </div>
+      </div>
+      </br>
+
+      <div class="row">
+        <div class="col-xs-12 form-group">
+        <%= q.label :etiquetas %>   
+        <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
+                              {}, 
+                              {:multiple => true, :required => true, :class => "selectTag"}) %>
       </div>
 
       <%= q.submit "Crear pregunta", class: 'btn btn-primary' %>

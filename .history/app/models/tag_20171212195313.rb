@@ -10,4 +10,6 @@ class Tag < ApplicationRecord
     scope :alfab, -> {
         order('nombre ASC') #Etiquetas en orden alfabético
     }
+
+    
 end

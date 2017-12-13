@@ -5,15 +5,17 @@
     </div>
   </div>
 
-
+  <% if @question.errors.any? %>
+    <% @question.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  <% end %>
 
   <div class="panel-body">
     <%= form_for @question do |q| %> 
       <% if @question.errors.any? %>
         <div class="alert alert-danger devise-errors">
-            <% @question.errors.full_messages.each do |error_message| %>
-            <%= error_message %> <br />
-            <% end %>
+          <%= @question.errors.full_messages %>
         </div>
       <% end %>
 

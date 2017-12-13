@@ -60,7 +60,6 @@ class QuestionsController < ApplicationController
       render :new
     end
   end
- 
 
   private
   def question_params

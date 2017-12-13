@@ -1,13 +1,15 @@
-<% if flash[:notice] %>  
-<% end %>
 <div class="panel col-md-9">
   <div class="panel-header" style="margin-left:10px">
+
+    <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
     <h2> Etiquetas </h2>
   </div>
   <div class="table-responsive panel-body">
     <table class="table">
       <tr>
-        <th> Nombre </th>
+        <th> Etiqueta </th>
         <th> Fecha de creación </th>
         <th> Última modificación </th>
         <% if ((user_signed_in?) && (current_user.puntos > 300)) %>

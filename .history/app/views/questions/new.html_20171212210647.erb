@@ -5,15 +5,11 @@
     </div>
   </div>
 
-
-
   <div class="panel-body">
     <%= form_for @question do |q| %> 
       <% if @question.errors.any? %>
         <div class="alert alert-danger devise-errors">
-            <% @question.errors.full_messages.each do |error_message| %>
-            <%= error_message %> <br />
-            <% end %>
+          <%= @question.errors.messages %>
         </div>
       <% end %>
 
@@ -38,6 +34,22 @@
           <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
                               {}, 
                               {:multiple => true, :required => true, :class => "multiselect form-control"}) %>
+        <script type="text/javascript">
+          $(document).ready(function() {
+
+            var last_valid_selection = null;
+
+            $('#userRequest_activity').change(function(event) {
+
+              if ($(this).val().length > 3) {
+
+                $(this).val(last_valid_selection);
+              } else {
+                last_valid_selection = $(this).val();
+              }
+            });
+          });
+        </script>
         </div>
       </div>
 

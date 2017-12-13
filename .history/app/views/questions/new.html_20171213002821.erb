@@ -12,7 +12,7 @@
       <% if @question.errors.any? %>
         <div class="alert alert-danger devise-errors">
             <% @question.errors.full_messages.each do |error_message| %>
-            <%= error_message %> <br />
+            <%= error_message if @question.errors.full_messages.first == error_message %> <br />
             <% end %>
         </div>
       <% end %>

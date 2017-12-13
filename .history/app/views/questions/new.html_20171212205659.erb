@@ -5,15 +5,11 @@
     </div>
   </div>
 
-
-
   <div class="panel-body">
-    <%= form_for @question do |q| %> 
+    <%= form_for @question do |q| %>
       <% if @question.errors.any? %>
         <div class="alert alert-danger devise-errors">
-            <% @question.errors.full_messages.each do |error_message| %>
-            <%= error_message %> <br />
-            <% end %>
+          <%= @question.errors.messages %>
         </div>
       <% end %>
 
@@ -33,11 +29,13 @@
 
       <div class="row">
         <div class="col-xs-12 form-group">
-        
+        <style>
+textarea,input,select{ display: block; width: 100%; }
+</style>
           <%= q.label :etiquetas %>
           <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
                               {}, 
-                              {:multiple => true, :required => true, :class => "multiselect form-control"}) %>
+                              {:multiple => true, :required => true, :class => "form-control"}) %>
         </div>
       </div>
 

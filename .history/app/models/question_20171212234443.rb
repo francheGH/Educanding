@@ -27,10 +27,8 @@ class Question < ApplicationRecord
     end
   end
 
-
-  
-  def validate_tags
-    errors.add(:tags,"Debe seleccionar 5 etiquetas máximo") if tags.size > 5
+  def amount_of_tags
+    errors.add(:tags, "deben haber entre 1 y 5 tags") if tags_id.size <1 && tags_id.size > 5
   end
   
   belongs_to :user
@@ -43,6 +41,6 @@ class Question < ApplicationRecord
 
   validates :detalles,presence:true
   validates :pregunta,presence:true,uniqueness:true
-  validate :validate_tags
+  validate :amount_of_tags
 
 end
