@@ -15,15 +15,21 @@
 
     <div class="panel-body">
       <p> <%= @question.detalles %></p>
-      <div class="pull-left">
+      <div class="tags">
         Etiquetas: <%=raw tag_links(@question.tag_list)%>
       </div>
-      <div class="pull-right" >
-          <i class="fa fa-reply"></i> <%= @question.cant_respuestas%>
-          <i class="fa fa-eye"></i> <%= @question.visitas%>
-          <i class="fa fa-thumbs-up"></i> <%= @question.positive_votes%>
-          <i class="fa fa-thumbs-down"></i> <%= @question.negative_votes %>
-      </div>
+         
+    
+          <td> <!-- trying to have conditional presentation -->
+          <% if @question.positive_votes-@question.negative_votes > 0 %>
+            <i class="fa fa-thumbs-up"></i>
+          <% else %>
+            <i class="fa fa-thumbs-down"></i>
+          <% end %>
+          </td>
+
+        <%= @question.positive_votes-@question.negative_votes %>
+     
     </div>
 
     <% if user_signed_in? %>
@@ -90,8 +96,7 @@
       <div class="panel-body">
         <p> <%= qcomment.texto %></p>
         <div class="pull-right" >
-          <i class="fa fa-thumbs-up"></i> <%= qcomment.positive_votes %>
-          <i class="fa fa-thumbs-down"></i> <%= qcomment.negative_votes %>
+          <p> Votos positivos:<%= qcomment.positive_votes %> | Votos negativos:<%= qcomment.negative_votes %></p>
         </div>
       </div>
 
@@ -155,8 +160,7 @@
     <div class="panel-body">
       <p> <%= answer.respuesta %></p>
       <div class="pull-right" >
-          <i class="fa fa-thumbs-up"></i> <%= answer.positive_votes %>
-          <i class="fa fa-thumbs-down"></i> <%= answer.negative_votes %>
+        <p> Votos positivos:<%= answer.positive_votes %> | Votos negativos:<%= answer.negative_votes %></p>
       </div>
     </div>
 

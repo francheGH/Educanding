@@ -38,10 +38,9 @@
           Etiquetas: <%=raw tag_links(question.tag_list)%>
         </div>
         <div class="pull-right" >
-          <i class="fa fa-reply"></i> <%= question.cant_respuestas%>
-          <i class="fa fa-eye"></i> <%= question.visitas%>
-          <i class="fa fa-thumbs-up"></i> <%= question.positive_votes%>
-          <i class="fa fa-thumbs-down"></i> <%= question.negative_votes %>
+          <i class="fa fa-eye"></i> <%= @question.visitas%>
+          <i class="fa fa-thumbs-up"></i> <%= @question.positive_votes%>
+          <i class="fa fa-thumbs-down"></i> <%= @question.negative_votes %>
       </div>
       </div>
 

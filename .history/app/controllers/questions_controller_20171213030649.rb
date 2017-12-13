@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
   end
 
   def rank
-    @question.positive_votes-@question.negative_votes > 0
+    @question.positive_votes-@question.negative_votes
   end
 
   private
