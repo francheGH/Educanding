@@ -42,6 +42,12 @@ class Question < ApplicationRecord
       Tag.where(nombre: nombre.strip).first_or_create!
     end
   end
+
+
+  
+  def validate_tags
+    errors.add(:tags,"Debe seleccionar 5 etiquetas máximo") if tags.size > 5
+  end
   
   belongs_to :user
   belongs_to :faculty
@@ -53,5 +59,6 @@ class Question < ApplicationRecord
 
   validates :detalles,presence:true
   validates :pregunta,presence:true,uniqueness:true
+  validate :validate_tags
 
 end

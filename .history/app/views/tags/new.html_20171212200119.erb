@@ -1,0 +1,23 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2> Crear una Etiqueta </h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for @tag do |f| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :nombre %>
+          <%= f.text_area :nombre, class: 'form-control', label: 'Etiqueta', required:true, placeholder: 'Ingrese la etiqueta' %>
+        </div>
+      </div>
+      </br>
+      </br>
+
+      <%= f.submit "Crear etiqueta", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

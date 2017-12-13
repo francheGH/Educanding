@@ -1,0 +1,71 @@
+<div class="panel-center col-md-5">
+  <div class="panel-heading">
+    <div class="text-left">
+      <h2><%= @user.nombre %></h2>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <% if devise_error_messages? %>
+        <div class="alert alert-danger devise-errors">
+          <%= devise_error_messages! %>
+        </div>
+      <% end %>
+      
+      <!-- Nombre -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Nombre </label>
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i> <%= f.label 'Nombre' %>
+        </span>
+        <%= f.text_field :nombre, class: 'form-control', value: @user.nombre, :readonly => true %>
+      </div>
+
+      <!-- Apellido -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Apellido </label>
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i> <%= f.label 'Apellido' %>
+        </span>
+        <%= f.text_field :apellido, class: 'form-control', value: @user.apellido, :readonly => true %>
+      </div>
+
+      <!-- Sexo -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Sexo </label>
+        <span class="input-group-addon">
+          <i class="fa fa-venus-mars"></i> <label for="user_sexo">Sexo</label>
+        </span>
+        <%= f.text_field :sexo, class: 'form-control', value: @user.sexo, :readonly => true %>
+      </div>
+
+      <!-- Facultad -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Facultad </label>
+        <span class="input-group-addon">
+          <i class="fa fa-institution"></i> <label for="user_faculty_id">Facultad</label>
+        </span>
+        <%= f.text_field :facultad, class: 'form-control', value: @user.faculty.nil? ? nil : @user.faculty.universidad, :readonly => true %>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Email </label>
+        <span class="input-group-addon">
+          <i class="fa fa-envelope"></i> <%= f.label 'Email' %>
+        </span>
+        <%= f.email_field :email, value: @user.email, :readonly => true, class: 'form-control' %>
+      </div>
+
+      <!-- Puntaje -->
+      <div class="form-group input-group">
+        <label class="sr-only"> Puntaje </label>
+        <span class="input-group-addon">
+          <i class="fa fa-star-o" aria-hidden="true"></i> <%= f.label 'Puntaje' %>
+        </span>
+        <%= f.email_field :puntos, value: @user.puntos, :readonly => true, class: 'form-control' %>
+      </div>
+
+ <% end %>
+  </div>

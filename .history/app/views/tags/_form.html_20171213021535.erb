@@ -1,0 +1,15 @@
+  <div class="panel-body">
+    <%= form_for @tag do |f| %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :nombre %>
+          <%= f.text_area :nombre, class: 'form-control', label: 'Etiqueta', required:true, placeholder: 'Ingrese la etiqueta' %>
+        </div>
+      </div>
+      </br>
+      </br>
+
+      <%= f.submit msgsub, class: 'btn btn-primary' %>
+    <% end %>
+  </div>

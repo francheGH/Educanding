@@ -28,18 +28,24 @@
           </div>
         </div>
 
-        <!-- Se ponen los detalles de las preguntas en el centro-->
-        <div class="panel-body">
-          <p>
-            <%=truncate(question.detalles,length: 300)%>
-            <% if question.detalles.length > 300 %>
-              <%=link_to "Leer mas",question%>
-            <%end%>
-          </p>
-          <div class="tags">
-            Etiquetas: <%=raw tag_links(question.tag_list)%>
-          </div>
+      <!-- Se ponen los detalles de las preguntas en el centro-->
+      <div class="panel-body">
+        <p>
+          <%=truncate(question.detalles,length: 300)%>
+          <% if question.detalles.length > 300 %>
+            <%=link_to "Leer mas",question%>
+          <%end%>
+        </p>
+        <div class="pull-left">
+          Etiquetas: <%=raw tag_links(question.tag_list)%>
         </div>
+        <div class="pull-right" >
+          <i class="fa fa-reply"></i> <%= question.cant_respuestas%>
+          <i class="fa fa-eye"></i> <%= question.visitas%>
+          <i class="fa fa-thumbs-up"></i> <%= question.positive_votes%>
+          <i class="fa fa-thumbs-down"></i> <%= question.negative_votes %>
+        </div>
+      </div>
 
         <!-- Y luego el footer con los botones -->
         <div class="panel-footer">

@@ -1,0 +1,35 @@
+  <div class="panel-body">
+    <%= form_for @question do |q| %> 
+      <% if @question.errors.any? %>
+        <div class="alert alert-danger devise-errors">
+            <% @question.errors.full_messages.each do |error_message| %>
+            <%= error_message %> <br />
+            <% end %>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <%= q.label :pregunta %>
+          <%= q.text_area :pregunta, required: true, class: 'form-control', label: 'Pregunta', placeholder: 'Ingrese la pregunta' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <%= q.label :detalles %>
+          <%= q.text_area :detalles, required: true, class: 'form-control', label: 'Detalles', placeholder: 'Ingrese los detalles' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <%= q.label :etiquetas %>
+          <%= q.collection_select(:tag_ids, Tag.all, :id, :nombre,
+                              {}, 
+                              {:multiple => true, :required => true, :class => "multiselect form-control"}) %>
+        </div>
+      </div>
+
+      <%= q.submit :label, class: 'btn btn-primary' %>
+      <% end %>
+  </div>

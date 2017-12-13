@@ -1,0 +1,43 @@
+<% if flash[:notice] %>
+       
+<% end %>
+<div class="panel col-md-9">
+  <div class="panel-header" style="margin-left:10px">
+    <h2> Etiquetas </h2>
+  </div>
+  <div class="table-responsive panel-body">
+    <table class="table">
+      <tr>
+        <th> Nombre </th>
+        <th> Fecha de creación </th>
+        <th> Última modificación </th>
+        <% if ((user_signed_in?) && (current_user.puntos > 300)) %>
+        <th> Acciones </th>
+        <% end %>
+      </tr>
+      <% @tags.alfab.each do |tag| %>
+        <tr>
+            <td> <%= truncate(tag.nombre, length: 20)%> </td>
+            <td> <%= tag.created_at.strftime("%d/%m/%Y")%></td>
+            <td> <%= tag.updated_at.strftime("%d/%m/%Y")%> </td>
+            <td>
+              <% if ((user_signed_in?) && (current_user.puntos > 300)) %>
+                <%= link_to "Editar", edit_tag_path(tag) , class: 'btn btn-info btn-sm' %>
+                <%= link_to "Eliminar", tag, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "¿Estas seguro?" } %>
+              <% end %>
+            </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<!-- Estos son los listados -->
+<div class="col-md-3">
+  <% if ((user_signed_in?) && (current_user.puntos > 300)) %>
+    <%= link_to "Crear Etiqueta", new_tag_path, class: 'btn btn-primary' %>
+    </br>
+    </br>
+  <% end %>
+  </div>
+</div>

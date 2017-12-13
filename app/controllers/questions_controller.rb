@@ -66,6 +66,10 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def rank
+    @question.positive_votes-@question.negative_votes > 0
+  end
+
   private
   def question_params
     params.require(:question).permit(:faculty_id, :pregunta, :detalles, :tag_list, tag_ids: [])
