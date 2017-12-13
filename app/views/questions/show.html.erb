@@ -150,6 +150,13 @@
           </div>
           <div class="col-sm-3 text-right">
             <h4><small><em><%= answer.created_at.strftime("%d/%m/%Y")%> <%=answer.created_at.strftime("%H:%M:%S") %></em></small></h4>
+            <%= link_to answer_better_path(answer) do %>
+              <% if answer.mejorRespuesta %>
+                <i class="fa fa-star fa-lg"></i>
+              <% elsif !answer.question.tieneMejorRespuesta %>
+                  <i class="fa fa-star-o fa-lg"></i>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -168,7 +175,6 @@
             <% if !answer.acomments.empty? %>
               <a class="btn btn-info" role="button" data-toggle="collapse" href="#comentariosRespuesta<%= index.to_s %>"href="#comentariosRespuesta" aria-expanded="false" aria-controls="comentariosRespuesta"> Ver comentarios </a>
             <%end%>
-            <%= link_to "Mejor repuesta", answer_better_path(answer), class: 'btn btn-primary' %>
             <% if current_user == answer.user %>
               <% if ((current_user.puntos > (Permission.find(7).puntos)-1)) %>
                 <%= link_to "Editar", edit_answer_path(answer), class: 'btn btn-primary' %>
