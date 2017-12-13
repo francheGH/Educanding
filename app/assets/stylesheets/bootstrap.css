@@ -1973,7 +1973,7 @@ output {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  cursor: not-allowed;
+  /*cursor: not-allowed; Lo saque ya que no sabía como quitarlo desde users.scss*/
   background-color: #eeeeee;
 }
 

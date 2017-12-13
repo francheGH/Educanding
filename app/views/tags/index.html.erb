@@ -10,7 +10,7 @@
         <th> Nombre </th>
         <th> Fecha de creación </th>
         <th> Última modificación </th>
-        <% if ((user_signed_in?) && (current_user.puntos > 300)) %>
+        <% if ((user_signed_in?) && (current_user.puntos > (Permission.find(5).puntos)-1)) %>
         <th> Acciones </th>
         <% end %>
       </tr>
@@ -20,7 +20,7 @@
             <td> <%= tag.created_at.strftime("%d/%m/%Y")%></td>
             <td> <%= tag.updated_at.strftime("%d/%m/%Y")%> </td>
             <td>
-              <% if ((user_signed_in?) && (current_user.puntos > 300)) %>
+              <% if ((user_signed_in?) && (current_user.puntos > (Permission.find(5).puntos)-1)) %>
                 <%= link_to "Editar", edit_tag_path(tag) , class: 'btn btn-info btn-sm' %>
                 <%= link_to "Eliminar", tag, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "¿Estas seguro?" } %>
               <% end %>

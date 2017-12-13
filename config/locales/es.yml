@@ -5,6 +5,11 @@ es:
       user:
         email: "El email"
         faculty: "La facultad"
+      question:
+        pregunta: "La pregunta"
+        detalles: "Los detalles"
+        tags: "Los tags"
+        faculty: "La facultad"
 
     errors:
       messages:
@@ -133,7 +138,7 @@ es:
       not_an_integer: debe ser un entero
       odd: debe ser impar
       required: debe existir
-      taken: ya está en uso
+      taken: ya existe
       too_long:
         one: "es demasiado largo (1 carácter máximo)"
         other: "es demasiado largo (%{count} caracteres máximo)"

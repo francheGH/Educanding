@@ -54,8 +54,6 @@ class QuestionsController < ApplicationController
     @question.user_id = current_user.id
     if(!current_user.faculty.nil?)
       @question.faculty_id = current_user.faculty.id
-    else
-      @question.faculty_id = params[:faculty_id]
     end
 
     if @question.save
