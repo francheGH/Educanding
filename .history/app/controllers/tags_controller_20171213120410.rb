@@ -46,7 +46,6 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find_by(nombre: params[:id])
-    redirect_to :controller => 'questions', :action => 'index', tag: @tag.nombre 
   end
 
   private

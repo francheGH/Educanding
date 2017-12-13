@@ -60,6 +60,20 @@ ActiveRecord::Schema.define(version: 20171213140937) do
     t.index ["user_id"], name: "index_avotes_on_user_id"
   end
 
+  create_table "comment_answers", force: :cascade do |t|
+    t.string "text"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comment_questions", force: :cascade do |t|
+    t.string "text"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "faculties", force: :cascade do |t|
     t.string "universidad"
     t.string "facultad"

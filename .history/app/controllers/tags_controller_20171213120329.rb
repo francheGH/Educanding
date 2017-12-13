@@ -15,7 +15,7 @@ class TagsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.find(params[:id])    
+    @tag = Tag.find_by(nombre: params[:name])    
   end
 
   def update
@@ -45,8 +45,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = Tag.find_by(nombre: params[:id])
-    redirect_to :controller => 'questions', :action => 'index', tag: @tag.nombre 
+    @tag = Tag.find(params[:id])
   end
 
   private
